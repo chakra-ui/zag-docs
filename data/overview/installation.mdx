@@ -54,32 +54,30 @@ export function Toggle() {
 > within the machine hook.
 > [Learn more](https://github.com/pmndrs/valtio#react-via-usesnapshot)
 
-### Usage with Vue 3 (JSX)
+### Usage with Vue 3 (<script setup>)
 
-Zag works seamlessly with Vue's JSX approach. Here's how to use the same toggle
+Zag works seamlessly with Vue's `<script setup>` sugar. Here's how to use the same toggle
 logic in Vue:
 
-```jsx
-import { computed, defineComponent, h, Fragment } from "vue"
+```html
+<script setup>
+import { computed } from "vue"
 import * as toggle from "@zag-js/toggle"
 import { useMachine, useSetup, normalizeProps } from "@zag-js/vue"
 
-export default defineComponent({
-  name: "Toggle",
-  setup() {
-    const [state, send] = useMachine(toggle.machine)
-    const ref = useSetup({ send, id: "1" })
-    const apiRef = computed(() => toggle.connect(state, send, normalizeProps))
-    return () => {
-      const api = apiRef.value
-      return (
-        <button ref={ref} {...api.buttonProps}>
-          {api.isPressed ? "On" : "Off"}
-        </button>
-      )
-    }
-  },
-})
+const [state, send] = useMachine(toggle.machine)
+const ref = useSetup({ send, id: "1" })
+
+const api = computed(() => 
+  toggle.connect(state.value, send, normalizeProps)
+)
+</script>
+
+<template>
+  <button ref="ref" v-bind="api.buttonProps">
+    {{ api.isPressed ? "On" : "Off" }}
+  </button>
+</template>
 ```
 
 There are some extra functions that need to be used in order to make it work:
