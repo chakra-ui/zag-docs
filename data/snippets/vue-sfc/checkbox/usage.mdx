@@ -1,7 +1,7 @@
 ```md
 <script setup>
 import * as checkbox from "@zag-js/checkbox"
-import { useMachine, normalizeProps } from "@zag-js/vue"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
 import { computed } from "vue"
 
 const [state, send] = useMachine(checkbox.machine)
