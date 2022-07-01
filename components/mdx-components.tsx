@@ -5,11 +5,14 @@ import { chakra } from "@chakra-ui/system"
 import { useMachine, useSetup } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { MDX } from "contentlayer/core"
-import { allSnippets } from "contentlayer/generated"
+import { allComponents, allSnippets } from "contentlayer/generated"
 import { frameworks, FRAMEWORKS } from "lib/framework-utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC } from "react"
+import { HiOutlineCode } from "react-icons/hi"
+import { ImMagicWand } from "react-icons/im"
+import { RiNpmjsFill } from "react-icons/ri"
 import { CopyButton } from "./copy-button"
 import { useFramework } from "./framework"
 import { Showcase } from "./showcase"
@@ -25,10 +28,50 @@ function SnippetItem({ body, id }: { body: MDX; id: string }) {
   )
 }
 
+type ResourceLinkProps = {
+  href: string
+  icon: FC
+  children: any
+}
+
+function ResourceLink({ href, icon, children }: ResourceLinkProps) {
+  return (
+    <HStack
+      as="a"
+      href={href}
+      target="_blank"
+      borderWidth="1px"
+      px="2"
+      py="1"
+      fontSize="sm"
+      spacing="1"
+    >
+      <Icon as={icon} color="green.500" fontSize="lg" />
+      <span>{children}</span>
+    </HStack>
+  )
+}
+
 const components: Record<string, FC<Record<string, any>>> = {
   Showcase,
   Admonition(props) {
     return <div {...props} />
+  },
+  Resources(props) {
+    const comp = allComponents.find((c) => c.package === props.pkg)
+    return (
+      <HStack mt="6" spacing="4">
+        <ResourceLink icon={RiNpmjsFill} href={comp.npmUrl}>
+          {comp.version} (latest)
+        </ResourceLink>
+        <ResourceLink icon={ImMagicWand} href={comp.visualizeUrl}>
+          Visualize Logic
+        </ResourceLink>
+        <ResourceLink icon={HiOutlineCode} href={comp.sourceUrl}>
+          View Source
+        </ResourceLink>
+      </HStack>
+    )
   },
   blockquote(props) {
     return <chakra.blockquote layerStyle="blockquote" {...props} />

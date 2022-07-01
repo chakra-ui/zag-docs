@@ -16,7 +16,7 @@ export default function Page() {
       </button>
       {api().isOpen && (
         <Portal>
-          <div {...api().overlayProps} />
+          <div {...api().backdropProps} />
           <div {...api().underlayProps}>
             <div {...api().contentProps}>
               <h2 {...api().titleProps}>Edit profile</h2>

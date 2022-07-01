@@ -3,6 +3,7 @@ import {
   defineDocumentType,
   FieldDefs,
   makeSource,
+  LocalDocument,
 } from "contentlayer/source-files"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeCodeTitles from "rehype-code-titles"
@@ -13,6 +14,7 @@ import remarkDirective from "remark-directive"
 import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
+import fs from "fs"
 
 const fields: FieldDefs = {
   title: { type: "string" },
@@ -20,10 +22,13 @@ const fields: FieldDefs = {
   package: { type: "string" },
 }
 
+const getSlug = (doc: LocalDocument) =>
+  doc._raw.sourceFileName.replace(/\.mdx$/, "")
+
 const computedFields: ComputedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
+    resolve: getSlug,
   },
   editUrl: {
     type: "string",
@@ -75,9 +80,36 @@ const Component = defineDocumentType(() => ({
   fields,
   computedFields: {
     ...computedFields,
+    npmUrl: {
+      type: "string",
+      resolve: (doc) => `https://www.npmjs.com/package/${doc.package}`,
+    },
     pathname: {
       type: "string",
       resolve: () => "/components/[...slug]",
+    },
+    sourceUrl: {
+      type: "string",
+      resolve: (doc) =>
+        `${siteConfig.repo.url}/tree/main/packages/machines/${getSlug(doc)}`,
+    },
+    visualizeUrl: {
+      type: "string",
+      resolve: (doc) => `https://state-machine-viz.vercel.app/${getSlug(doc)}`,
+    },
+    version: {
+      type: "string",
+      resolve: (doc) => {
+        try {
+          const file = fs.readFileSync(
+            `node_modules/${doc.package}/package.json`,
+            "utf8",
+          )
+          return JSON.parse(file).version
+        } catch {
+          return ""
+        }
+      },
     },
   },
 }))

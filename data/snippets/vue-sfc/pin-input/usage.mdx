@@ -16,7 +16,7 @@ const api = computed(() => pinInput.connect(state.value, send, normalizeProps));
       <input v-bind="api.getInputProps({ index: 1 })" />
       <input v-bind="api.getInputProps({ index: 2 })" />
     </div>
-    <button onClick="api.clearValue">Clear</button>
+    <button @click="api.clearValue">Clear</button>
   </div>
 </template>
 ```

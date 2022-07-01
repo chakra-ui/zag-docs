@@ -5,6 +5,7 @@ module.exports = function main(plop) {
   plop.setHelper("camelize", (txt) => {
     return txt.replace(/[-_]([a-z])/g, (g) => g[1].toUpperCase())
   })
+
   plop.setGenerator("snippet", {
     prompts: [
       {
@@ -27,6 +28,30 @@ module.exports = function main(plop) {
           base: `./plop/snippet/${framework}`,
           data: { component },
         })
+      })
+
+      return actions
+    },
+  })
+
+  plop.setGenerator("component", {
+    prompts: [
+      {
+        type: "input",
+        name: "component",
+        message: "Enter machine name (e.g. menu, popover):",
+      },
+    ],
+    actions(answers) {
+      const actions = []
+      if (!answers) return actions
+      const { component } = answers
+
+      actions.push({
+        type: "add",
+        path: "./data/components/{{component}}.mdx",
+        templateFile: `./plop/component.mdx.hbs`,
+        data: { component },
       })
 
       return actions

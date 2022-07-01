@@ -1,0 +1,96 @@
+---
+title: Composition
+description: Best practices to compose events and components
+---
+
+# Composition
+
+## Event composition
+
+Zag encourages the use of spread props to ensure we automatically attach all the
+event handlers and properties to elements.
+
+Sometimes, you may want to attach your own event handlers to the elements. To do
+that, import the `mergeProps` utility provided by zag for your framework.
+
+```jsx
+// 1. import mergeProps utility
+import { useMachine, useSetup, mergeProps } from "@zag-js/react"
+import * as toggle from "@zag-js/toggle"
+
+export function Toggle() {
+  const [state, send] = useMachine(toggle.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = toggle.connect(state, send)
+
+  // 2. write your custom event handlers
+  const handleClick = () => {
+    // do something
+  }
+
+  // 3. merge the props
+  const buttonProps = mergeProps(api.buttonProps, {
+    onClick: handleClick,
+  })
+
+  return (
+    // 4. spread the new props
+    <button ref={ref} {...buttonProps}>
+      {api.isPressed ? "On" : "Off"}
+    </button>
+  )
+}
+```
+
+## Id composition
+
+Zag depends heavily on pure DOM queries to identify elements. This means every
+element part needs to have a unique id.
+
+Each time you use the `useSetup` hook, you'll need to ensure that you provide a
+unique id.
+
+You can rely on framework-specific utilities to generate unique ids. React
+provides `useId()` hook and Solid.js provides a `createId()` function for this
+purpose.
+
+```js
+/// ...                          👇 must be unique
+const ref = useSetup({ send, id: useId() })
+/// ...
+```
+
+Internally, Zag maps the unique id provided to each component parts needed for
+the widget to work.
+
+In some cases, you might want to compose different machines together in a single
+component. For example, you want to use the same trigger as a popover and
+tooltip trigger at the same time.
+
+To achieve this, you will need to pass custom `ids` to the machine's context.
+This will ensure that calling `document.getElementById(...)` within the toolip
+and/or popover will return the same element.
+
+```js {7,12}
+import * as tooltip from "@zag-js/tooltip"
+import * as popover from "@zag-js/popover"
+
+function Example() {
+  const [tooltipState, tooltipSend] = useMachine(
+    tooltip.machine({
+      ids: { trigger: "id-1" },
+    }),
+  )
+  const [popoverState, popoverSend] = useMachine(
+    popover.machine({
+      ids: { trigger: "id-1" },
+    }),
+  )
+}
+
+// render UI
+return </>
+```
+
+In the example above, you will notice that the popover and tooltip trigger share
+the same id. That's how to compose machines together.

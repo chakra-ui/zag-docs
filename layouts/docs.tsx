@@ -18,7 +18,7 @@ type DocsLayoutProps = {
 }
 
 export default function DocsLayout({ children, doc }: DocsLayoutProps) {
-  const hideToc = doc.frontmatter.toc.length < 3
+  const hideToc = doc.frontmatter.toc.length < 2
 
   return (
     <Box>

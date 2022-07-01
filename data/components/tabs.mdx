@@ -1,6 +1,7 @@
 ---
 title: Tabs
 description: Using the tabs machine in your project.
+package: "@zag-js/tabs"
 ---
 
 # Tabs
@@ -9,6 +10,8 @@ An accessible tabs component that provides keyboard interactions and ARIA
 attributes described in the WAI-ARIA Tabs Design Pattern. Tabs consist of a tab
 list with one or more visually separated tabs. Each tab has associated content,
 and only the selected tab's content is shown.
+
+<Resources pkg="@zag-js/tabs" />
 
 <Showcase id="Tabs" />
 
@@ -170,8 +173,8 @@ const [state, send] = useMachine(
 
 The tab's `api` exposes the following methods:
 
-- `value` — The value of the currently selected accordion.
-- `setValue()` — Used to set the value of the accordion that will be expanded.
+- `value` — The value of the currently selected tab.
+- `setValue()` — Used to set the value of the tab that will be shown.
 
 ```jsx
 const api = connect(state, send)

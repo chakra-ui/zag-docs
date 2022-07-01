@@ -21,7 +21,7 @@ export default defineComponent({
           </button>
           {api.isOpen && (
             <Teleport to="body">
-              <div {...api.overlayProps} />
+              <div {...api.backdropProps} />
               <div {...api.underlayProps}>
                 <div {...api.contentProps}>
                   <h2 {...api.titleProps}>Edit profile</h2>

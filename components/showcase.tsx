@@ -1,3 +1,4 @@
+import { Checkbox } from "./machines/checkbox"
 import { Accordion } from "./machines/accordion"
 import { Dialog } from "./machines/dialog"
 import { Editable } from "./machines/editable"
@@ -22,6 +23,16 @@ const components = {
         closeOnOutsideClick: true,
         closeOnEsc: true,
         role: { options: ["dialog", "alertdialog"], default: "dialog" },
+      }}
+    />
+  ),
+  Checkbox: () => (
+    <Playground
+      component={Checkbox}
+      defaultProps={{
+        indeterminate: false,
+        disabled: false,
+        readonly: false,
       }}
     />
   ),
@@ -76,13 +87,12 @@ const components = {
       component={NumberInput}
       defaultProps={{
         disabled: false,
-        precision: 0,
+        minFractionDigits: 0,
+        maxFractionDigits: 5,
         min: -10,
         max: 20,
         step: 1,
         allowMouseWheel: false,
-        clampValueOnBlur: true,
-        allowOverflow: false,
       }}
     />
   ),

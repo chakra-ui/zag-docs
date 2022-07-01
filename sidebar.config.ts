@@ -38,6 +38,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "State machine", id: "whats-a-machine" },
         { type: "doc", label: "Styling", id: "styling" },
         { type: "doc", label: "TypeScript", id: "typescript-usage" },
+        { type: "doc", label: "Composition", id: "composition" },
         {
           type: "doc",
           label: "Programmatic Control",
@@ -53,6 +54,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "components",
       items: [
         { type: "doc", label: "Accordion", id: "accordion" },
+        { type: "doc", label: "Checkbox", id: "checkbox" },
         { type: "doc", label: "Dialog", id: "dialog" },
         { type: "doc", label: "Editable", id: "editable" },
         { type: "doc", label: "Menu", id: "menu" },

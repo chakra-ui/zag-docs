@@ -1,12 +1,15 @@
 ---
 title: Number Input
 description: Using the numeric input machine in your project.
+package: "@zag-js/number-input"
 ---
 
 # Number Input
 
 The number input provides controls for editing, incrementing or decrementing
 numeric values using the keyboard or pointer.
+
+<Resources pkg="@zag-js/number-input" />
 
 <Showcase id="NumberInput" />
 
@@ -159,7 +162,7 @@ const [state, send] = useMachine(
 ## Usage within forms
 
 To use the number input within forms, set the `name` property in the machine's
-contact.
+context.
 
 ```jsx {3}
 const [state, send] = useMachine(
@@ -276,5 +279,19 @@ added.
 ```css
 [data-part="input"][data-readonly] {
   /* readonly styles for the input */
+}
+```
+
+### Spin buttons
+
+The spin buttons can be styled individually with the `data-type` attribute.
+
+```css
+[data-part="spin-button"][data-type="increment"] {
+  /* styles for the increment spin button */
+}
+
+[data-part="spin-button"][data-type="decrement"] {
+  /* styles for the decrement spin button */
 }
 ```

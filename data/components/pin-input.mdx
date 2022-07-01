@@ -1,6 +1,7 @@
 ---
 title: Pin Input
 description: Using the pin input machine in your project.
+package: "@zag-js/pin-input"
 ---
 
 # Pin Input
@@ -8,6 +9,8 @@ description: Using the pin input machine in your project.
 The pin input is optimized for entering a sequence of digits or letters. The
 input fields allow one character at a time. When the digit or letter is entered,
 focus transfers to the next input in the sequence, until every input is filled.
+
+<Resources pkg="@zag-js/pin-input" />
 
 <Showcase id="PinInput" />
 
@@ -162,11 +165,11 @@ const [state, send] = useMachine(
   pinInput.machine({
     onChange(value) {
       // value => string[]
-      console.log("value changed to:", values)
+      console.log("value changed to:", value)
     },
     onComplete(value, valueAsString) {
       // value => string[], valueAsString => string
-      console.log("completed value:", values)
+      console.log("completed value:", value)
     },
     onInvalid(details) {
       // details => { index: number, value: string }
