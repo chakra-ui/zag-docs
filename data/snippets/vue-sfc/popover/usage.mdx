@@ -7,7 +7,7 @@ import { computed, Teleport, Fragment } from "vue";
 const [state, send] = useMachine(popover.machine);
 const ref = useSetup({ send, id: "1" });
 const api = computed(() => popover.connect(state.value, send, normalizeProps));
-const Wrapper = api.portalled ? Teleport : Fragment;
+const Wrapper = api.value.portalled ? Teleport : Fragment;
 </script>
 
 <template>
