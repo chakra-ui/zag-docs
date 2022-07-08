@@ -1,13 +1,13 @@
 ```jsx
 import { Portal } from "@reach/portal"
 import * as popover from "@zag-js/popover"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 import * as React from "react"
 
 export function Popover() {
   const [state, send] = useMachine(popover.machine({ portalled: true }))
   const ref = useSetup({ send, id: "1" })
-  const api = popover.connect(state, send)
+  const api = popover.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref}>

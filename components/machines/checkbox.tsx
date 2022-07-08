@@ -1,6 +1,6 @@
 import { chakra } from "@chakra-ui/system"
 import * as checkbox from "@zag-js/checkbox"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 
 type CheckboxProps = {
   controls: {
@@ -16,7 +16,7 @@ export function Checkbox(props: CheckboxProps) {
   })
 
   const ref = useSetup<HTMLLabelElement>({ send, id: "1" })
-  const api = checkbox.connect(state, send)
+  const api = checkbox.connect(state, send, normalizeProps)
 
   return (
     <div>

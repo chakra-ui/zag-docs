@@ -1,11 +1,11 @@
 ```jsx
 import * as slider from "@zag-js/slider"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 export function Slider() {
   const [state, send] = useMachine(slider.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = slider.connect(state, send)
+  const api = slider.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref} {...api.rootProps}>

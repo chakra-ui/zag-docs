@@ -1,6 +1,6 @@
 import { Portal } from "@reach/portal"
 import * as popover from "@zag-js/popover"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import * as React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
@@ -12,7 +12,7 @@ export function Popover(props: any) {
     context: props.controls,
   })
   const ref = useSetup({ send, id: "1" })
-  const api = popover.connect(state, send)
+  const api = popover.connect(state, send, normalizeProps)
 
   const Wrapper = api.portalled ? Portal : React.Fragment
 

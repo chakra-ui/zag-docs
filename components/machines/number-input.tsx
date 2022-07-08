@@ -1,5 +1,5 @@
 import * as numberInput from "@zag-js/number-input"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 
@@ -8,7 +8,7 @@ export function NumberInput(props: any) {
     context: props.controls,
   })
   const ref = useSetup({ send, id: "1" })
-  const api = numberInput.connect(state, send)
+  const api = numberInput.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref} {...api.rootProps}>

@@ -1,7 +1,7 @@
 ```jsx
 import { Portal } from "@reach/portal"
 import * as menu from "@zag-js/menu"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 import { useEffect } from "react"
 
 export function NestedMenu() {
@@ -10,14 +10,14 @@ export function NestedMenu() {
     menu.machine({ "aria-label": "File" }),
   )
   const fileMenuRef = useSetup({ send: fileMenuSend, id: "1" })
-  const fileMenu = menu.connect(fileMenuState, fileMenuSend)
+  const fileMenu = menu.connect(fileMenuState, fileMenuSend, normalizeProps)
 
   // Level 2 - Share Menu
   const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
     menu.machine({ "aria-label": "Share" }),
   )
   const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" })
-  const shareMenu = menu.connect(shareMenuState, shareMenuSend)
+  const shareMenu = menu.connect(shareMenuState, shareMenuSend, normalizeProps)
 
   useEffect(() => {
     setTimeout(() => {

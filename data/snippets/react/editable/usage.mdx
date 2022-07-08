@@ -1,11 +1,11 @@
 ```jsx
 import * as editable from "@zag-js/editable"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 export default function Editable() {
   const [state, send] = useMachine(editable.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = editable.connect(state, send)
+  const api = editable.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref} {...api.rootProps}>

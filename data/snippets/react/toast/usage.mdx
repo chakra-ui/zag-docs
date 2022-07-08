@@ -1,12 +1,12 @@
 ```jsx
-import { useActor, useMachine, useSetup } from "@zag-js/react"
+import { useActor, useMachine, useSetup, normalizeProps } from "@zag-js/react"
 import * as toast from "@zag-js/toast"
 import { createContext } from "react"
 
 // 1. Create the single toast
 function Toast(props) {
   const [state, send] = useActor(props.actor)
-  const api = toast.connect(state, send)
+  const api = toast.connect(state, send, normalizeProps)
 
   return (
     <div {...api.rootProps}>
@@ -25,7 +25,7 @@ const useToast = () => useContext(ToastContext)
 export function ToastProvider() {
   const [state, send] = useMachine(toast.group.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = toast.group.connect(state, send)
+  const api = toast.group.connect(state, send, normalizeProps)
 
   return (
     <ToastContext.Provider value={api}>

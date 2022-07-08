@@ -1,4 +1,4 @@
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { chakra } from "@chakra-ui/system"
 
@@ -13,7 +13,7 @@ export function Tabs(props: any) {
     context: props.controls,
   })
   const ref = useSetup({ send, id: "1" })
-  const api = tabs.connect(state, send)
+  const api = tabs.connect(state, send, normalizeProps)
 
   return (
     <chakra.div width="full" maxW="400px" fontSize="sm" ref={ref}>

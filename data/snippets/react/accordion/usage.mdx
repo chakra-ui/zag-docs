@@ -1,6 +1,6 @@
 ```jsx
 import * as accordion from "@zag-js/accordion"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 const data = [
   { title: "Watercraft", content: "Sample accordion content" },
@@ -11,7 +11,7 @@ const data = [
 function Accordion() {
   const [state, send] = useMachine(accordion.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = accordion.connect(state, send)
+  const api = accordion.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref} {...api.rootProps}>

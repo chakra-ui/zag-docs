@@ -1,5 +1,5 @@
 import * as slider from "@zag-js/slider"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { Center, Flex } from "@chakra-ui/layout"
 
@@ -9,7 +9,7 @@ export function Slider(props: any) {
     { context: props.controls },
   )
   const ref = useSetup({ send, id: "1" })
-  const api = slider.connect(state, send)
+  const api = slider.connect(state, send, normalizeProps)
 
   return (
     <chakra.div width="240px" ref={ref} {...api.rootProps}>

@@ -1,6 +1,6 @@
 ```jsx
 import * as numberInput from "@zag-js/number-input"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 export function NumberInput() {
   // 1. Consume the machine
@@ -10,7 +10,7 @@ export function NumberInput() {
   const ref = useSetup({ send, id: "1" })
 
   // 3. Grab the provided API
-  const api = numberInput.connect(state, send)
+  const api = numberInput.connect(state, send, normalizeProps)
 
   // 4. Render the component
   return (

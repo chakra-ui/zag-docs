@@ -1,6 +1,6 @@
 import * as combobox from "@zag-js/combobox"
 import * as dialog from "@zag-js/dialog"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import { matchSorter } from "match-sorter"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -13,7 +13,7 @@ export function useSearch() {
     send: dialog_send,
     id: "s1",
   })
-  const dialog_api = dialog.connect(dialog_state, dialog_send)
+  const dialog_api = dialog.connect(dialog_state, dialog_send, normalizeProps)
 
   const [results, setResults] = useState<SearchMetaResult>(searchData)
 
@@ -67,7 +67,11 @@ export function useSearch() {
     send: combobox_send,
     id: "s2",
   })
-  const combobox_api = combobox.connect(combobox_state, combobox_send)
+  const combobox_api = combobox.connect(
+    combobox_state,
+    combobox_send,
+    normalizeProps,
+  )
 
   useEffect(() => {
     if (combobox_api.isInputValueEmpty) {

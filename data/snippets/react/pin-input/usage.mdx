@@ -1,11 +1,11 @@
 ```jsx
 import * as pinInput from "@zag-js/pin-input"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 export function PinInput() {
   const [state, send] = useMachine(pinInput.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = pinInput.connect(state, send)
+  const api = pinInput.connect(state, send, normalizeProps)
 
   return (
     <div>

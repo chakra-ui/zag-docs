@@ -1,6 +1,6 @@
 ```jsx
 import * as tagsInput from "@zag-js/tags-input"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 export function TagsInput() {
   const [state, send] = useMachine(
@@ -9,7 +9,7 @@ export function TagsInput() {
     }),
   )
   const ref = useSetup({ send, id: "1" })
-  const api = tagsInput.connect(state, send)
+  const api = tagsInput.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref} {...api.rootProps}>

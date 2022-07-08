@@ -7,7 +7,7 @@ import { Portal } from "@reach/portal"
 export function ToastProvider() {
   const [state, send] = useMachine(toast.group.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = toast.group.connect(state, send)
+  const api = toast.group.connect(state, send, normalizeProps)
 
   return (
     <ToastContext.Provider value={api}>

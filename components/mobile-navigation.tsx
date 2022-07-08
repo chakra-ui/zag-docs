@@ -2,7 +2,7 @@ import { Box, Flex, HStack, Spacer } from "@chakra-ui/layout"
 import { useToken } from "@chakra-ui/system"
 import Portal from "@reach/portal"
 import * as dialog from "@zag-js/dialog"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import { useRouteChange } from "lib/use-route-change"
 import { useEffect, useRef } from "react"
 import { HiMenu, HiX } from "react-icons/hi"
@@ -19,7 +19,7 @@ export function MobileNavigation() {
     }),
   )
   const ref = useSetup({ send, id: "m1" })
-  const api = dialog.connect(state, send)
+  const api = dialog.connect(state, send, normalizeProps)
   const initialRef = useRef<HTMLButtonElement>(null)
 
   const lgBreakpoint = useToken("breakpoints", "lg")

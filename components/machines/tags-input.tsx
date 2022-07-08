@@ -1,5 +1,5 @@
 import * as tagsInput from "@zag-js/tags-input"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 
 export function TagsInput(props: any) {
@@ -10,7 +10,7 @@ export function TagsInput(props: any) {
     { context: props.controls },
   )
   const ref = useSetup({ send, id: "1" })
-  const api = tagsInput.connect(state, send)
+  const api = tagsInput.connect(state, send, normalizeProps)
 
   return (
     <chakra.div width="400px">

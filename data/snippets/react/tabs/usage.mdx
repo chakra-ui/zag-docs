@@ -1,6 +1,6 @@
 ```jsx
 import * as tabs from "@zag-js/tabs"
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 
 const data = [
   { value: "item-1", label: "Item one", content: "Item one content" },
@@ -11,7 +11,7 @@ const data = [
 export function Tabs() {
   const [state, send] = useMachine(tabs.machine({ value: "item-1" }))
   const ref = useSetup({ send, id: "1" })
-  const api = tabs.connect(state, send)
+  const api = tabs.connect(state, send, normalizeProps)
 
   return (
     <div ref={ref} {...api.rootProps}>

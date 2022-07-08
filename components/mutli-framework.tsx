@@ -1,6 +1,6 @@
 import { Box, Flex, HStack, Stack, Text, VStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { CodeArea } from "./code-area"
 import { ReactIcon, SolidIcon, VueIcon } from "./icons"
@@ -28,7 +28,7 @@ const FrameworkButton = chakra("button", {
 export function MultiframeworkTabs() {
   const [state, send] = useMachine(tabs.machine({ value: "react" }))
   const ref = useSetup({ send, id: "r:1" })
-  const api = tabs.connect(state, send)
+  const api = tabs.connect(state, send, normalizeProps)
   return (
     <Box ref={ref} {...api.rootProps}>
       <HStack {...api.triggerGroupProps}>

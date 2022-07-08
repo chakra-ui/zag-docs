@@ -32,27 +32,33 @@ const ref = useSetup<HTMLButtonElement>({ send, id: "1" })
 
 ### `connect`
 
-To ensure that the properties you spread unto the JSX elements is strongly typed
-in your framework, you'll need to:
+To ensure that the properties you spread are strongly typed in your framework,
+you'll need to import the `normalizeProps`.
 
-- Import the `PropTypes` type and add it as a generic argument.
-- Import the `normalizeProps` function to help convert JSX properties to
-  Vue-compatible equivalent.
+**In React.js**
 
-> **Note**: This step isn't required for React
+```tsx
+import * as accordion from "@zag-js/accordion"
+import { normalizeProps } from "@zag-js/react"
+
+const Accordion = () => {
+  const api = accordion.connect(state, send, normalizeProps)
+  // ...
+}
+```
 
 **In Vue.js**
 
 ```tsx
 import * as accordion from "@zag-js/accordion"
-import { PropTypes, normalizeProps } from "@zag-js/vue"
+import { normalizeProps } from "@zag-js/vue"
 
 const Accordion = defineComponent({
   // ...
   setup() {
     // ...
     const apiRef = computed(() =>
-      accordion.connect<PropTypes>(state, send, normalizeProps),
+      accordion.connect(state, send, normalizeProps),
     )
     // ...
   },
@@ -63,13 +69,11 @@ const Accordion = defineComponent({
 
 ```tsx
 import * as accordion from "@zag-js/accordion"
-import { PropTypes, normalizeProps } from "@zag-js/solid"
+import { normalizeProps } from "@zag-js/solid"
 
 const Accordion = (props) => {
   // ...
-  const api = createMemo(() =>
-    accordion.connect<PropTypes>(state, send, normalizeProps),
-  )
+  const api = createMemo(() => accordion.connect(state, send, normalizeProps))
   // ...
 }
 ```

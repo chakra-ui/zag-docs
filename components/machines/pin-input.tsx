@@ -1,14 +1,14 @@
 import { HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as pinInput from "@zag-js/pin-input"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 
 export function PinInput(props: any) {
   const [state, send] = useMachine(pinInput.machine, {
     context: props.controls,
   })
   const ref = useSetup({ send, id: "1" })
-  const api = pinInput.connect(state, send)
+  const api = pinInput.connect(state, send, normalizeProps)
 
   return (
     <div>

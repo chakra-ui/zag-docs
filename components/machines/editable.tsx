@@ -1,5 +1,5 @@
 import * as editable from "@zag-js/editable"
-import { useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { HStack } from "@chakra-ui/layout"
 import { Button } from "components/button"
@@ -10,7 +10,7 @@ export function Editable(props: any) {
   })
 
   const ref = useSetup({ send, id: "1" })
-  const api = editable.connect(state, send)
+  const api = editable.connect(state, send, normalizeProps)
 
   return (
     <chakra.div width="300px" ref={ref} {...api.rootProps}>
