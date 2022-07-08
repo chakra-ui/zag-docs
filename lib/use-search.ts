@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as combobox from "@zag-js/combobox"
 import * as dialog from "@zag-js/dialog"
 import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
@@ -6,6 +7,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { searchData, SearchMetaResult } from "./search-meta"
 import mergeRefs from "./use-merge-refs"
+import { useUpdateEffect } from "./use-update-effect"
 
 export function useSearch() {
   const [dialog_state, dialog_send] = useMachine(dialog.machine)
@@ -24,9 +26,9 @@ export function useSearch() {
       placeholder: "Search the docs",
       inputBehavior: "autohighlight",
       selectionBehavior: "clear",
-      onSelect({ value }) {
+      onSelect({ label }) {
         try {
-          const { pathname, slug, url } = JSON.parse(value)
+          const { pathname, slug, url } = JSON.parse(label)
           router.push({ pathname, query: { slug } }, url)
         } catch (err) {
           console.log(err)
@@ -61,7 +63,7 @@ export function useSearch() {
     return () => {
       document.removeEventListener("keydown", fn)
     }
-  })
+  }, [dialog_api.isOpen, dialog_api.close, dialog_api.open])
 
   const combobox_ref = useSetup<HTMLButtonElement>({
     send: combobox_send,
@@ -73,18 +75,21 @@ export function useSearch() {
     normalizeProps,
   )
 
-  useEffect(() => {
-    if (combobox_api.isInputValueEmpty) {
+  useUpdateEffect(() => {
+    if (dialog_api.isOpen && combobox_api.isInputValueEmpty) {
       setResults([])
     }
-  }, [combobox_api.isInputValueEmpty])
+  }, [dialog_api.isOpen, combobox_api.isInputValueEmpty])
 
-  useEffect(() => {
-    if (!dialog_api.isOpen) {
+  useUpdateEffect(() => {
+    if (!dialog_api.isOpen && !combobox_api.isInputValueEmpty) {
       combobox_api.clearValue()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dialog_api.isOpen, combobox_api.clearValue])
+  }, [
+    dialog_api.isOpen,
+    combobox_api.isInputValueEmpty,
+    combobox_api.clearValue,
+  ])
 
   return {
     ref: mergeRefs(dialog_ref, combobox_ref),

@@ -34,13 +34,13 @@ yarn add @zag-js/react
 Here's an example of the toggle machine used in a React.js project.
 
 ```jsx
-import { useMachine, useSetup } from "@zag-js/react"
+import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
 import * as toggle from "@zag-js/toggle"
 
 export function Toggle() {
   const [state, send] = useMachine(toggle.machine)
   const ref = useSetup({ send, id: "1" })
-  const api = toggle.connect(state, send)
+  const api = toggle.connect(state, send, normalizeProps)
   return (
     <button ref={ref} {...api.buttonProps}>
       {api.isPressed ? "On" : "Off"}
