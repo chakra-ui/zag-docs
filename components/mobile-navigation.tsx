@@ -2,7 +2,7 @@ import { Box, Flex, HStack, Spacer } from "@chakra-ui/layout"
 import { useToken } from "@chakra-ui/system"
 import Portal from "@reach/portal"
 import * as dialog from "@zag-js/dialog"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 import { useRouteChange } from "lib/use-route-change"
 import { useEffect, useRef } from "react"
 import { HiMenu, HiX } from "react-icons/hi"
@@ -18,7 +18,7 @@ export function MobileNavigation() {
       initialFocusEl: () => initialRef.current,
     }),
   )
-  const ref = useSetup({ send, id: "m1" })
+
   const api = dialog.connect(state, send, normalizeProps)
   const initialRef = useRef<HTMLButtonElement>(null)
 
@@ -42,7 +42,7 @@ export function MobileNavigation() {
         px="2"
         {...api.triggerProps}
       >
-        <HStack ref={ref}>
+        <HStack>
           <HiMenu /> <span>Menu</span>
         </HStack>
       </Button>
@@ -66,7 +66,6 @@ export function MobileNavigation() {
               >
                 <LogoWithLink />
                 <Button
-                  ref={initialRef}
                   size="sm"
                   px="2"
                   {...api.closeButtonProps}

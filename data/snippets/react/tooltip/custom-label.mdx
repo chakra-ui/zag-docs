@@ -1,5 +1,5 @@
 ```jsx {7,20-25}
-import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
+import { useMachine, normalizeProps } from "@zag-js/react"
 import * as tooltip from "@zag-js/tooltip"
 
 export function Tooltip() {
@@ -8,12 +8,12 @@ export function Tooltip() {
       "aria-label": "Tooltip Custom Label",
     }),
   )
-  const ref = useSetup({ send, id: "1" })
+
   const api = tooltip.connect(state, send, normalizeProps)
 
   return (
     <>
-      <button ref={ref} {...api.triggerProps}>
+      <button {...api.triggerProps}>
         Hover me
       </button>
       {api.isOpen && (

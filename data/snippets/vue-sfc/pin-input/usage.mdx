@@ -1,11 +1,11 @@
 ```md
 <script setup>
 import * as pinInput from "@zag-js/pin-input";
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed } from "vue";
 
-const [state, send] = useMachine(pinInput.machine);
-const ref = useSetup({ send, id: "1" });
+const [state, send] = useMachine(pinInput.machine({ id: "pinInput" }));
+;
 const api = computed(() => pinInput.connect(state.value, send, normalizeProps));
 </script>
 

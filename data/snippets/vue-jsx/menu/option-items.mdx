@@ -1,6 +1,6 @@
 ```jsx
 import * as menu from "@zag-js/menu"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { computed, defineComponent, h, Fragment } from "vue"
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
         values: { order: "", type: [] },
       }),
     )
-    const ref = useSetup({ send, id: "1" })
+  
     const apiRef = computed(() =>
       menu.connect(state.value, send, normalizeProps),
     )
@@ -21,7 +21,7 @@ export default defineComponent({
       const api = apiRef.value
       return (
         <>
-          <button ref={ref} {...api.triggerProps}>
+          <button {...api.triggerProps}>
             Trigger
           </button>
           <div {...api.positionerProps}>

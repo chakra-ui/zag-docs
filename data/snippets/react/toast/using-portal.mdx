@@ -5,8 +5,8 @@ import { Portal } from "@reach/portal"
 
 // 3. Create the toast group provider, wrap your app with it
 export function ToastProvider() {
-  const [state, send] = useMachine(toast.group.machine)
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(toast.group.machine({ id: "toast.group" }))
+
   const api = toast.group.connect(state, send, normalizeProps)
 
   return (

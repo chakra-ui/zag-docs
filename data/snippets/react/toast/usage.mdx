@@ -1,5 +1,5 @@
 ```jsx
-import { useActor, useMachine, useSetup, normalizeProps } from "@zag-js/react"
+import { useActor, useMachine, normalizeProps } from "@zag-js/react"
 import * as toast from "@zag-js/toast"
 import { createContext } from "react"
 
@@ -23,8 +23,8 @@ const useToast = () => useContext(ToastContext)
 
 // 3. Create the toast group provider
 export function ToastProvider() {
-  const [state, send] = useMachine(toast.group.machine)
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(toast.group.machine({ id: "toast.group" }))
+  
   const api = toast.group.connect(state, send, normalizeProps)
 
   return (

@@ -1,15 +1,15 @@
 ```jsx
 import * as editable from "@zag-js/editable"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, createUniqueId } from "solid-js"
 
 export default function Editable() {
-  const [state, send] = useMachine(editable.machine)
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(editable.machine({ id: "editable" }))
+  
   const api = createMemo(() => editable.connect(state, send, normalizeProps))
 
   return (
-    <div ref={ref} {...api().rootProps}>
+    <div {...api().rootProps}>
       <div {...api().areaProps}>
         <input {...api().inputProps} />
         <span {...api().previewProps} />

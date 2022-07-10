@@ -1,7 +1,7 @@
 ```md
 <script setup>
 import * as menu from "@zag-js/menu";
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed } from "vue";
 import { data } from "./data";
 
@@ -11,7 +11,7 @@ const [state, send] = useMachine(
     values: { order: "", type: [] },
   })
 );
-const ref = useSetup({ send, id: "1" });
+
 const api = computed(() => menu.connect(state.value, send, normalizeProps));
 const orderOptions = data.order.map((item) => ({
   ...item,

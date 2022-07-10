@@ -1,14 +1,14 @@
 ```jsx
 import * as numberInput from "@zag-js/number-input"
-import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
+import { useMachine, normalizeProps } from "@zag-js/react"
 
 export function NumberInput() {
-  const [state, send] = useMachine(numberInput.machine)
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(numberInput.machine({ id: "numberInput" }))
+  
   const api = numberInput.connect(state, send, normalizeProps)
 
   return (
-    <div ref={ref} {...api.rootProps}>
+    <div {...api.rootProps}>
       <label {...api.labelProps}>Enter number:</label>
       <div>
         <button {...api.decrementButtonProps}>DEC</button>

@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as accordion from "@zag-js/accordion"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 
 const items = [
   {
@@ -29,15 +29,15 @@ type AccordionProps = {
 }
 
 export function Accordion(props: AccordionProps) {
-  const [state, send] = useMachine(accordion.machine, {
+  const [state, send] = useMachine(accordion.machine({ id: "accordion" }), {
     context: props.controls,
   })
 
   const api = accordion.connect(state, send, normalizeProps)
-  const ref = useSetup({ send, id: "1" })
+
 
   return (
-    <Box width="400px" ref={ref} {...api.rootProps}>
+    <Box width="400px" {...api.rootProps}>
       {items.map((item) => (
         <Box
           bg="white"

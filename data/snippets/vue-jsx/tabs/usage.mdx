@@ -1,6 +1,6 @@
 ```jsx
 import * as tabs from "@zag-js/tabs"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { defineComponent, computed, h, Fragment } from "vue"
 
 const data = [
@@ -12,8 +12,8 @@ const data = [
 export default defineComponent({
   name: "Tabs",
   setup() {
-    const [state, send] = useMachine(tabs.machine({ value: "item-1" }))
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(tabs.machine({ id: "tabs", value: "item-1" }))
+    
     const apiRef = computed(() =>
       tabs.connect(state.value, send, normalizeProps),
     )
@@ -21,7 +21,7 @@ export default defineComponent({
     return () => {
       const api = apiRef.value
       return (
-        <div ref={ref} {...api.rootProps}>
+        <div {...api.rootProps}>
           <div {...api.triggerGroupProps}>
             {data.map((item) => (
               <button

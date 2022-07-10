@@ -1,11 +1,11 @@
 ```md
 <script setup>
 import * as checkbox from "@zag-js/checkbox"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { computed } from "vue"
 
-const [state, send] = useMachine(checkbox.machine)
-const ref = useSetup({ send, id: "1" })
+const [state, send] = useMachine(checkbox.machine({ id: "checkbox" }))
+
 const api = computed(() => checkbox.connect(state.value, send, normalizeProps))
 </script>
 

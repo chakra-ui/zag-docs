@@ -1,14 +1,14 @@
 ```md
 <script setup>
 import * as menu from "@zag-js/menu";
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed, onMounted, Teleport } from "vue";
 
 // Level 1 - File Menu
 const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
   menu.machine({ "aria-label": "File" })
 );
-const fileMenuRef = useSetup({ send: fileMenuSend, id: "1" });
+
 const fileMenu = computed(() =>
   menu.connect(fileMenuState.value, fileMenuSend, normalizeProps)
 );
@@ -17,7 +17,7 @@ const fileMenu = computed(() =>
 const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
   menu.machine({ "aria-label": "Share" })
 );
-const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" });
+
 const shareMenu = computed(() =>
   menu.connect(subState.value, subSend, normalizeProps)
 );

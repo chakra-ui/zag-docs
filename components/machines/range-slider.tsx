@@ -1,5 +1,5 @@
 import * as slider from "@zag-js/range-slider"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { Center, Flex } from "@chakra-ui/layout"
 
@@ -11,11 +11,11 @@ export function RangeSlider(props: any) {
     }),
     { context: props.controls },
   )
-  const ref = useSetup({ send, id: "1" })
+
   const api = slider.connect(state, send, normalizeProps)
 
   return (
-    <chakra.div width="200px" ref={ref} {...api.rootProps}>
+    <chakra.div width="200px" {...api.rootProps}>
       <Flex justify="space-between">
         <chakra.label mr="2" {...api.labelProps}>
           Quantity

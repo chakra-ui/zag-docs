@@ -34,15 +34,16 @@ yarn add @zag-js/react
 Here's an example of the toggle machine used in a React.js project.
 
 ```jsx
-import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
+import { useMachine, normalizeProps } from "@zag-js/react"
 import * as toggle from "@zag-js/toggle"
 
 export function Toggle() {
-  const [state, send] = useMachine(toggle.machine)
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(toggle.machine({
+    id: "1"
+  }))
   const api = toggle.connect(state, send, normalizeProps)
   return (
-    <button ref={ref} {...api.buttonProps}>
+    <button {...api.buttonProps}>
       {api.isPressed ? "On" : "Off"}
     </button>
   )
@@ -62,18 +63,19 @@ logic in Vue:
 ```jsx
 import { computed, defineComponent, h, Fragment } from "vue"
 import * as toggle from "@zag-js/toggle"
-import { useMachine, useSetup, normalizeProps } from "@zag-js/vue"
+import { useMachine, normalizeProps } from "@zag-js/vue"
 
 export default defineComponent({
   name: "Toggle",
   setup() {
-    const [state, send] = useMachine(toggle.machine)
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(toggle.machine({
+      id: "1"
+    }))
     const apiRef = computed(() => toggle.connect(state, send, normalizeProps))
     return () => {
       const api = apiRef.value
       return (
-        <button ref={ref} {...api.buttonProps}>
+        <button {...api.buttonProps}>
           {api.isPressed ? "On" : "Off"}
         </button>
       )
@@ -97,14 +99,15 @@ toggle logic in Solid:
 ```jsx
 import { createMemo } from "solid-js"
 import * as toggle from "@zag-js/toggle"
-import { useMachine, useSetup, normalizeProps } from "@zag-js/solid"
+import { useMachine, normalizeProps } from "@zag-js/solid"
 
 export default function Toggle() {
-  const [state, send] = useMachine(toggle.machine)
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(toggle.machine({
+    id: "1"
+  }))
   const api = createMemo(() => toggle.connect(state, send, normalizeProps))
   return (
-    <button ref={ref} {...api().buttonProps}>
+    <button {...api().buttonProps}>
       {api().isPressed ? "On" : "Off"}
     </button>
   )

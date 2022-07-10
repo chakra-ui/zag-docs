@@ -1,18 +1,18 @@
 import { HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import * as pinInput from "@zag-js/pin-input"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 
 export function PinInput(props: any) {
-  const [state, send] = useMachine(pinInput.machine, {
+  const [state, send] = useMachine(pinInput.machine({ id: "pinInput" }), {
     context: props.controls,
   })
-  const ref = useSetup({ send, id: "1" })
+
   const api = pinInput.connect(state, send, normalizeProps)
 
   return (
     <div>
-      <HStack ref={ref} mb="4" {...api.rootProps}>
+      <HStack mb="4" {...api.rootProps}>
         {[1, 2, 3].map((_, index) => (
           <chakra.input
             bg="white"

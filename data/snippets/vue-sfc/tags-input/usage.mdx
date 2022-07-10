@@ -1,7 +1,7 @@
 ```md
 <script setup>
 import * as tagsInput from "@zag-js/tags-input";
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed } from "vue";
 
 const [state, send] = useMachine(
@@ -9,7 +9,7 @@ const [state, send] = useMachine(
     value: ["React", "Vue"],
   })
 );
-const ref = useSetup({ send, id: "1" });
+;
 const api = computed(() =>
   tagsInput.connect(state.value, send, normalizeProps)
 );
