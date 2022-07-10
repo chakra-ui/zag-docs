@@ -6,7 +6,6 @@ import { matchSorter } from "match-sorter"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { searchData, SearchMetaResult } from "./search-meta"
-import mergeRefs from "./use-merge-refs"
 import { useUpdateEffect } from "./use-update-effect"
 
 export function useSearch() {
