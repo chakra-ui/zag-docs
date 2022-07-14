@@ -1,6 +1,6 @@
 ```jsx
 import * as menu from "@zag-js/menu"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import {
   computed,
   defineComponent,
@@ -17,7 +17,7 @@ export default defineComponent({
     const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
       menu.machine({ "aria-label": "File" }),
     )
-    const fileMenuRef = useSetup({ send: fileMenuSend, id: "1" })
+
     const fileMenuApi = computed(() =>
       menu.connect(fileMenuState.value, fileMenuSend, normalizeProps),
     )
@@ -26,7 +26,7 @@ export default defineComponent({
     const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
       menu.machine({ "aria-label": "Share" }),
     )
-    const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" })
+
     const shareMenuApi = computed(() =>
       menu.connect(subState.value, subSend, normalizeProps),
     )
@@ -51,7 +51,7 @@ export default defineComponent({
 
           <Teleport to="body">
             <div {...fileMenu.positionerProps}>
-              <ul ref={fileMenuRef} {...fileMenu.contentProps}>
+              <ul {...fileMenu.contentProps}>
                 <li {...fileMenu.getItemProps({ id: "new-tab" })}>New tab</li>
                 <li {...fileMenu.getItemProps({ id: "new-win" })}>
                   New window
@@ -65,7 +65,7 @@ export default defineComponent({
 
           <Teleport to="body">
             <div {...shareMenu.positionerProps}>
-              <ul ref={shareMenuRef} {...shareMenu.contentProps}>
+              <ul {...shareMenu.contentProps}>
                 <li {...shareMenu.getItemProps({ id: "messages" })}>
                   Messages
                 </li>

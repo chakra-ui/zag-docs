@@ -1,6 +1,6 @@
 ```jsx
 import * as tagsInput from "@zag-js/tags-input"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { defineComponent, computed, h, Fragment } from "vue"
 
 export default defineComponent({
@@ -11,7 +11,7 @@ export default defineComponent({
         value: ["React", "Vue"],
       }),
     )
-    const ref = useSetup({ send, id: "1" })
+    
     const apiRef = computed(() =>
       tagsInput.connect(state.value, send, normalizeProps),
     )
@@ -20,7 +20,7 @@ export default defineComponent({
       const api = apiRef.value
 
       return (
-        <div ref={ref} {...api.rootProps}>
+        <div {...api.rootProps}>
           {api.value.map((value, index) => (
             <span key={index}>
               <div {...api.getTagProps({ index, value })}>

@@ -1,11 +1,11 @@
 ```md
 <script setup>
 import * as menu from "@zag-js/menu";
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed } from "vue";
 
-const [state, send] = useMachine(menu.machine({ "aria-label": "File" }));
-const ref = useSetup({ send, id: "1" });
+const [state, send] = useMachine(menu.machine({ id: "menu", "aria-label": "File" }));
+;
 const api = computed(() => menu.connect(state.value, send, normalizeProps));
 </script>
 

@@ -10,11 +10,11 @@ import { HiDocument, HiHashtag } from "react-icons/hi"
 import { SearchTrigger } from "./search-trigger"
 
 export function Search() {
-  const { ref, dialog_api, combobox_api, results } = useSearch()
+  const { dialog_api, combobox_api, results } = useSearch()
 
   return (
     <>
-      <SearchTrigger {...dialog_api.triggerProps} ref={ref} />
+      <SearchTrigger {...dialog_api.triggerProps} />
       {dialog_api.isOpen && (
         <Portal>
           <Box

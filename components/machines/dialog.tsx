@@ -3,18 +3,18 @@ import { Center, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Portal } from "@reach/portal"
 import * as dialog from "@zag-js/dialog"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 import { Button } from "components/button"
 import { HiX } from "react-icons/hi"
 
 export function Dialog(props: { controls: any }) {
-  const [state, send] = useMachine(dialog.machine, { context: props.controls })
-  const ref = useSetup<HTMLButtonElement>({ send, id: "1" })
+  const [state, send] = useMachine(dialog.machine({ id: "dialog" }), { context: props.controls })
+
   const api = dialog.connect(state, send, normalizeProps)
 
   return (
     <>
-      <Button size="sm" variant="green" ref={ref} {...api.triggerProps}>
+      <Button size="sm" variant="green" {...api.triggerProps}>
         Open Dialog
       </Button>
       {api.isOpen && (

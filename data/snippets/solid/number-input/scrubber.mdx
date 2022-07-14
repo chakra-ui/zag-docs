@@ -1,15 +1,15 @@
 ```jsx {14}
 import * as numberInput from "@zag-js/number-input"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, createUniqueId } from "solid-js"
 
 export function NumberInput() {
-  const [state, send] = useMachine(numberInput.machine)
-  const ref = useSetup({ send, id: createUniqueId() })
+  const [state, send] = useMachine(numberInput.machine({ id: "numberInput" }))
+
   const api = createMemo(() => numberInput.connect(state, send, normalizeProps))
 
   return (
-    <div ref={ref} {...api().rootProps}>
+    <div {...api().rootProps}>
       <label {...api().labelProps}>Enter number:</label>
       <div>
         <div {...api.scrubberProps} />

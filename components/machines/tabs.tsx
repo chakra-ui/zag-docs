@@ -1,4 +1,4 @@
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { chakra } from "@chakra-ui/system"
 
@@ -9,14 +9,17 @@ const data = [
 ]
 
 export function Tabs(props: any) {
-  const [state, send] = useMachine(tabs.machine({ value: "item-1" }), {
-    context: props.controls,
-  })
-  const ref = useSetup({ send, id: "1" })
+  const [state, send] = useMachine(
+    tabs.machine({ id: "tabs", value: "item-1" }),
+    {
+      context: props.controls,
+    },
+  )
+
   const api = tabs.connect(state, send, normalizeProps)
 
   return (
-    <chakra.div width="full" maxW="400px" fontSize="sm" ref={ref}>
+    <chakra.div width="full" maxW="400px" fontSize="sm">
       <chakra.div bg="white" borderBottomWidth="1px" {...api.triggerGroupProps}>
         {data.map((item) => (
           <chakra.button

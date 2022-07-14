@@ -1,15 +1,15 @@
 ```jsx
 import * as popover from "@zag-js/popover"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, createUniqueId } from "solid-js"
 
 export function Popover() {
-  const [state, send] = useMachine(popover.machine)
-  const ref = useSetup({ send, id: createUniqueId() })
+  const [state, send] = useMachine(popover.machine({ id: "popover" }))
+
   const api = createMemo(() => popover.connect(state, send, normalizeProps))
 
   return (
-    <div ref={ref}>
+    <div>
       <button {...api().triggerProps}>Click me</button>
       <div {...api().positionerProps}>
         <div {...api().contentProps}>

@@ -1,6 +1,6 @@
 import { chakra } from "@chakra-ui/system"
 import * as checkbox from "@zag-js/checkbox"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 
 type CheckboxProps = {
   controls: {
@@ -11,11 +11,11 @@ type CheckboxProps = {
 }
 
 export function Checkbox(props: CheckboxProps) {
-  const [state, send] = useMachine(checkbox.machine, {
+  const [state, send] = useMachine(checkbox.machine({ id: "checkbox" }), {
     context: props.controls,
   })
 
-  const ref = useSetup<HTMLLabelElement>({ send, id: "1" })
+
   const api = checkbox.connect(state, send, normalizeProps)
 
   return (
@@ -34,7 +34,6 @@ export function Checkbox(props: CheckboxProps) {
         _readOnly={{
           cursor: "default",
         }}
-        ref={ref}
         {...api.rootProps}
       >
         <span {...api.labelProps}>Checkbox Input</span>

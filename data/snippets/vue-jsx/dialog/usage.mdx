@@ -1,13 +1,13 @@
 ```jsx
 import * as dialog from "@zag-js/dialog"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { computed, defineComponent, h, Fragment, Teleport } from "vue"
 
 export default defineComponent({
   name: "Dialog",
   setup() {
-    const [state, send] = useMachine(dialog.machine)
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(dialog.machine({ id: "dialog" }))
+    
     const apiRef = computed(() =>
       dialog.connect(state.value, send, normalizeProps),
     )
@@ -16,7 +16,7 @@ export default defineComponent({
       const api = apiRef.value
       return (
         <>
-          <button ref={ref} {...api.triggerProps}>
+          <button {...api.triggerProps}>
             Open Dialog
           </button>
           {api.isOpen && (

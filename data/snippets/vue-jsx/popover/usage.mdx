@@ -1,13 +1,13 @@
 ```jsx
 import * as popover from "@zag-js/popover"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { defineComponent, computed, h, Fragment, Teleport } from "vue"
 
 export default defineComponent({
   name: "Popover",
   setup() {
-    const [state, send] = useMachine(popover.machine)
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(popover.machine({ id: "popover" }))
+    
     const apiRef = computed(() =>
       popover.connect(state.value, send, normalizeProps),
     )
@@ -16,7 +16,7 @@ export default defineComponent({
       const api = apiRef.value
       const Wrapper = api.portalled ? Teleport : Fragment
       return (
-        <div ref={ref}>
+        <div>
           <button {...api.triggerProps}>Click me</button>
           <Wrapper>
             <div {...api.positionerProps}>

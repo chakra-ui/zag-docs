@@ -1,4 +1,4 @@
-import { normalizeProps, useActor, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useActor, useMachine } from "@zag-js/react"
 import * as toast from "@zag-js/toast"
 import { useRef } from "react"
 import { chakra } from "@chakra-ui/system"
@@ -68,18 +68,18 @@ function Toast({ actor }: { actor: toast.Service }) {
 export function ToastGroup(props: any) {
   const [state, send] = useMachine(
     toast.group.machine({
+      id: "toast.group",
       offsets: "24px",
     }),
     { context: props.controls },
   )
 
-  const ref = useSetup({ send, id: "1" })
   const api = toast.group.connect(state, send, normalizeProps)
   const id = useRef<string>()
 
   return (
     <>
-      <div ref={ref} style={{ display: "flex", gap: "16px" }}>
+      <div style={{ display: "flex", gap: "16px" }}>
         <Button
           size="sm"
           variant="outline"

@@ -1,13 +1,13 @@
 ```jsx
 import * as editable from "@zag-js/editable"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { computed, defineComponent, h, Fragment } from "vue"
 
 export default defineComponent({
   name: "Editable",
   setup() {
-    const [state, send] = useMachine(editable.machine)
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(editable.machine({ id: "editable" }))
+  
     const apiRef = computed(() =>
       editable.connect(state.value, send, normalizeProps),
     )
@@ -16,7 +16,7 @@ export default defineComponent({
       const api = apiRef.value
 
       return (
-        <div ref={ref} {...api.rootProps}>
+        <div {...api.rootProps}>
           <div {...api.areaProps}>
             <input {...api.inputProps} />
             <span {...api.previewProps} />

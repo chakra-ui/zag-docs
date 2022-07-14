@@ -2,7 +2,7 @@
 import { Icon } from "@chakra-ui/icon"
 import { Box, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { MDX } from "contentlayer/core"
 import { allComponents, allSnippets } from "contentlayer/generated"
@@ -132,16 +132,15 @@ const components: Record<string, FC<Record<string, any>>> = {
 
     const [state, send] = useMachine(
       tabs.machine({
+        id: "snippet-tabs",
         value: userFramework ?? "react",
       }),
     )
-    const ref = useSetup({ send, id: props.id })
 
     const api = tabs.connect(state, send, normalizeProps)
 
     return (
       <Box
-        ref={ref}
         width="full"
         maxW="768px"
         my="8"

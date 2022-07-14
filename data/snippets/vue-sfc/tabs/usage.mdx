@@ -1,7 +1,7 @@
 ```md
 <script setup>
 import * as tabs from "@zag-js/tabs";
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed } from "vue";
 
 const data = [
@@ -10,8 +10,8 @@ const data = [
   { value: "item-3", label: "Item three", content: "Item three content" },
 ];
 
-const [state, send] = useMachine(tabs.machine({ value: "item-1" }));
-const ref = useSetup({ send, id: "1" });
+const [state, send] = useMachine(tabs.machine({ id: "tabs", value: "item-1" }));
+;
 const api = computed(() => tabs.connect(state.value, send, normalizeProps));
 </script>
 

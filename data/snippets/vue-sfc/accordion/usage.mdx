@@ -1,7 +1,7 @@
 ```md
 <script setup>
 import * as accordion from "@zag-js/accordion"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { computed } from "vue"
 
 const data = [
@@ -10,8 +10,8 @@ const data = [
   { title: "Aircrafts", content: "Sample accordion content" },
 ]
 
-const [state, send] = useMachine(accordion.machine)
-const ref = useSetup({ send, id: "1" })
+const [state, send] = useMachine(accordion.machine({ id: "accordion" }))
+
 const api = computed(() => accordion.connect(state.value, send, normalizeProps))
 </script>
 

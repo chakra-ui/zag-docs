@@ -14,22 +14,6 @@ providing:
 
 ## Usage Notes
 
-### `useSetup`
-
-The setup hook is used to ensure that the component works in any `window`
-environment (iframes, electron, etc.).
-
-The hook returns a `ref` function or object that you need to attach to an
-element in order for the machines to retrieve the correct reference to `window`
-and `document`.
-
-To make it work in TypeScript, you'll need to add an extra generic for the
-element type you want to attach the `ref` to.
-
-```tsx
-const ref = useSetup<HTMLButtonElement>({ send, id: "1" })
-```
-
 ### `connect`
 
 To ensure that the properties you spread are strongly typed in your framework,

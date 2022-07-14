@@ -1,6 +1,6 @@
 ```jsx
 import * as menu from "@zag-js/menu"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, onMount } from "solid-js"
 import { Portal } from "solid-js/web"
 
@@ -9,14 +9,14 @@ export default function Page() {
   const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
     menu.machine({ "aria-label": "File" }),
   )
-  const fileMenuRef = useSetup({ send, id: "1" })
+
   const fileMenu = createMemo(() => menu.connect(state, send, normalizeProps))
 
   // Level 2 - Share Menu
   const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
     menu.machine({ "aria-label": "Share" }),
   )
-  const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" })
+
   const shareMenu = createMemo(() =>
     menu.connect(subState, subSend, normalizeProps),
   )
@@ -39,7 +39,7 @@ export default function Page() {
 
       <Portal>
         <div {...fileMenu().positionerProps}>
-          <ul ref={fileMenuRef} {...fileMenu().contentProps}>
+          <ul {...fileMenu().contentProps}>
             <li {...fileMenu().getItemProps({ id: "new-tab" })}>New tab</li>
             <li {...fileMenu().getItemProps({ id: "new-win" })}>New window</li>
             <li {...shareMenuTriggerProps()}>Share</li>
@@ -51,7 +51,7 @@ export default function Page() {
 
       <Portal>
         <div {...shareMenu().positionerProps}>
-          <ul ref={shareMenuRef} {...shareMenu().contentProps}>
+          <ul {...shareMenu().contentProps}>
             <li {...shareMenu().getItemProps({ id: "messages" })}>Messages</li>
             <li {...shareMenu().getItemProps({ id: "airdrop" })}>Airdrop</li>
             <li {...shareMenu().getItemProps({ id: "whatsapp" })}>WhatsApp</li>

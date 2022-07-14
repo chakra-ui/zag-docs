@@ -1,13 +1,13 @@
 ```jsx
 import * as pinInput from "@zag-js/pin-input"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { computed, defineComponent, h, Fragment } from "vue"
 
 export default defineComponent({
   name: "PinInput",
   setup() {
-    const [state, send] = useMachine(pinInput.machine)
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(pinInput.machine({ id: "pinInput" }))
+    
     const apiRef = computed(() =>
       pinInput.connect(state.value, send, normalizeProps),
     )
@@ -15,7 +15,7 @@ export default defineComponent({
       const api = apiRef.value
       return (
         <div>
-          <div ref={ref} {...api.rootProps}>
+          <div {...api.rootProps}>
             <input {...api.getInputProps({ index: 0 })} />
             <input {...api.getInputProps({ index: 1 })} />
             <input {...api.getInputProps({ index: 2 })} />

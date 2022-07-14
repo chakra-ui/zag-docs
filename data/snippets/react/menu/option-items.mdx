@@ -1,6 +1,6 @@
 ```jsx
 import * as menu from "@zag-js/menu"
-import { useMachine, useSetup, normalizeProps } from "@zag-js/react"
+import { useMachine, normalizeProps } from "@zag-js/react"
 
 const data = {
   order: [
@@ -22,12 +22,12 @@ export function Menu() {
       values: { order: "", type: [] },
     }),
   )
-  const ref = useSetup({ send, id: "1" })
+
   const api = menu.connect(state, send, normalizeProps)
 
   return (
     <>
-      <button ref={ref} {...api.triggerProps}>
+      <button {...api.triggerProps}>
         Trigger
       </button>
       <div {...api.positionerProps}>

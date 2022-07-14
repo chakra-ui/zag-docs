@@ -1,6 +1,6 @@
 ```tsx
 import * as accordion from "@zag-js/accordion"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/vue"
+import { normalizeProps, useMachine } from "@zag-js/vue"
 import { defineComponent, h, Fragment, computed } from "vue"
 
 const data = [
@@ -12,15 +12,15 @@ const data = [
 export default defineComponent({
   name: "Accordion",
   setup() {
-    const [state, send] = useMachine(accordion.machine)
-    const ref = useSetup({ send, id: "1" })
+    const [state, send] = useMachine(accordion.machine({ id: "accordion" }))
+    
     const apiRef = computed(() =>
       accordion.connect(state.value, send, normalizeProps),
     )
     return () => {
       const api = apiRef.value
       return (
-        <div ref={ref} {...api.rootProps}>
+        <div {...api.rootProps}>
           {data.map((item) => (
             <div {...api.getItemProps({ value: item.title })}>
               <h3>

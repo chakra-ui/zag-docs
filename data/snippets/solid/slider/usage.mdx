@@ -1,15 +1,15 @@
 ```jsx
 import * as slider from "@zag-js/slider"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/solid"
+import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, createUniqueId } from "solid-js"
 
 export function Slider() {
-  const [state, send] = useMachine(slider.machine)
-  const ref = useSetup({ send, id: createUniqueId() })
+  const [state, send] = useMachine(slider.machine({ id: "slider" }))
+
   const api = createMemo(() => slider.connect(state, send, normalizeProps))
 
   return (
-    <div ref={ref} {...api().rootProps}>
+    <div {...api().rootProps}>
       <div>
         <label {...api().labelProps}>Slider Label</label>
         <output {...api().outputProps}>{api().value}</output>

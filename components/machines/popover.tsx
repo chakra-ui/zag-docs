@@ -1,6 +1,6 @@
 import { Portal } from "@reach/portal"
 import * as popover from "@zag-js/popover"
-import { normalizeProps, useMachine, useSetup } from "@zag-js/react"
+import { normalizeProps, useMachine } from "@zag-js/react"
 import * as React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
@@ -8,16 +8,16 @@ import { HiX } from "react-icons/hi"
 import { Button } from "components/button"
 
 export function Popover(props: any) {
-  const [state, send] = useMachine(popover.machine, {
+  const [state, send] = useMachine(popover.machine({ id: "popover" }), {
     context: props.controls,
   })
-  const ref = useSetup({ send, id: "1" })
+
   const api = popover.connect(state, send, normalizeProps)
 
   const Wrapper = api.portalled ? Portal : React.Fragment
 
   return (
-    <div ref={ref}>
+    <div>
       <Button size="sm" variant="green" {...api.triggerProps}>
         Click me
       </Button>
