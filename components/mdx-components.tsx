@@ -132,10 +132,10 @@ const components: Record<string, FC<Record<string, any>>> = {
 
     const [state, send] = useMachine(
       tabs.machine({
+        id: "snippet-tabs",
         value: userFramework ?? "react",
       }),
     )
-
 
     const api = tabs.connect(state, send, normalizeProps)
 

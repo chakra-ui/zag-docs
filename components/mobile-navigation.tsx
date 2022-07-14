@@ -15,6 +15,7 @@ import { Sidebar } from "./sidebar"
 export function MobileNavigation() {
   const [state, send] = useMachine(
     dialog.machine({
+      id: "mobile-nav",
       initialFocusEl: () => initialRef.current,
     }),
   )
@@ -65,11 +66,7 @@ export function MobileNavigation() {
                 px={{ base: "4", sm: "6", md: "8" }}
               >
                 <LogoWithLink />
-                <Button
-                  size="sm"
-                  px="2"
-                  {...api.closeButtonProps}
-                >
+                <Button size="sm" px="2" {...api.closeButtonProps}>
                   <HStack>
                     <HiX /> <span>Close</span>
                   </HStack>

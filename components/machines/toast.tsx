@@ -68,11 +68,11 @@ function Toast({ actor }: { actor: toast.Service }) {
 export function ToastGroup(props: any) {
   const [state, send] = useMachine(
     toast.group.machine({
+      id: "toast.group",
       offsets: "24px",
     }),
     { context: props.controls },
   )
-
 
   const api = toast.group.connect(state, send, normalizeProps)
   const id = useRef<string>()

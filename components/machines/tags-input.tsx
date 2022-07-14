@@ -5,6 +5,7 @@ import { chakra } from "@chakra-ui/system"
 export function TagsInput(props: any) {
   const [state, send] = useMachine(
     tagsInput.machine({
+      id: "tags-input",
       value: ["React", "Vue"],
     }),
     { context: props.controls },
