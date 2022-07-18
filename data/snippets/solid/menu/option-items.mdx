@@ -1,12 +1,13 @@
 ```jsx
 import * as menu from "@zag-js/menu"
 import { normalizeProps, useMachine } from "@zag-js/solid"
-import { createMemo, For } from "solid-js"
+import { createMemo, createUniqueId, For } from "solid-js"
 
 export function Menu() {
   const [state, send] = useMachine(
     menu.machine({
-       "aria-label": "Sort by",
+      id: createUniqueId(),
+      "aria-label": "Sort by",
       values: { order: "", type: [] },
     }),
   )

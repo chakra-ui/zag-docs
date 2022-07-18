@@ -6,7 +6,7 @@ import { createMemo, createUniqueId } from "solid-js"
 export function ContextMenu() {
   const [state, send] = useMachine(
     menu.machine({
-      id: "1",
+      id: createUniqueId(),
       "aria-label": "File",
     }),
   )
@@ -20,10 +20,10 @@ export function ContextMenu() {
       </div>
       <div {...api().positionerProps}>
         <ul {...api().contentProps}>
-          <li {...api().getItemProps({ id: createUniqueId() })}>Edit</li>
-          <li {...api().getItemProps({ id: createUniqueId() })}>Duplicate</li>
-          <li {...api().getItemProps({ id: createUniqueId() })}>Delete</li>
-          <li {...api().getItemProps({ id: createUniqueId() })}>Export...</li>
+          <li {...api().getItemProps({ id: "edit" })}>Edit</li>
+          <li {...api().getItemProps({ id: "duplicate" })}>Duplicate</li>
+          <li {...api().getItemProps({ id: "delete" })}>Delete</li>
+          <li {...api().getItemProps({ id: "export" })}>Export...</li>
         </ul>
       </div>
     </div>
