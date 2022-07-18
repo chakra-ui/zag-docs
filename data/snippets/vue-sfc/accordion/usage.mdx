@@ -10,7 +10,7 @@ const data = [
   { title: "Aircrafts", content: "Sample accordion content" },
 ]
 
-const [state, send] = useMachine(accordion.machine({ id: "accordion" }))
+const [state, send] = useMachine(accordion.machine({ id: "1" }))
 
 const api = computed(() => accordion.connect(state.value, send, normalizeProps))
 </script>

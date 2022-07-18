@@ -8,10 +8,11 @@ export default defineComponent({
   setup() {
     const [state, send] = useMachine(
       tagsInput.machine({
+        id: "1",
         value: ["React", "Vue"],
       }),
     )
-    
+
     const apiRef = computed(() =>
       tagsInput.connect(state.value, send, normalizeProps),
     )

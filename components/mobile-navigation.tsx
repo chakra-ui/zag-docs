@@ -66,7 +66,12 @@ export function MobileNavigation() {
                 px={{ base: "4", sm: "6", md: "8" }}
               >
                 <LogoWithLink />
-                <Button size="sm" px="2" {...api.closeButtonProps}>
+                <Button
+                  ref={initialRef}
+                  size="sm"
+                  px="2"
+                  {...api.closeButtonProps}
+                >
                   <HStack>
                     <HiX /> <span>Close</span>
                   </HStack>

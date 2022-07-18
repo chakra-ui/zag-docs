@@ -8,11 +8,12 @@ export default defineComponent({
   setup() {
     const [state, send] = useMachine(
       rangeSlider.machine({
+        id: "1",
         name: ["min", "max"],
         value: [10, 60],
       }),
     )
-    
+
     const apiRef = computed(() =>
       rangeSlider.connect(state.value, send, normalizeProps),
     )

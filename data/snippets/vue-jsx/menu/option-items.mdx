@@ -8,11 +8,12 @@ export default defineComponent({
   setup() {
     const [state, send] = useMachine(
       menu.machine({
+        id: "1",
         "aria-label": "Sort by",
         values: { order: "", type: [] },
       }),
     )
-  
+
     const apiRef = computed(() =>
       menu.connect(state.value, send, normalizeProps),
     )
@@ -21,9 +22,7 @@ export default defineComponent({
       const api = apiRef.value
       return (
         <>
-          <button {...api.triggerProps}>
-            Trigger
-          </button>
+          <button {...api.triggerProps}>Trigger</button>
           <div {...api.positionerProps}>
             <div {...api.contentProps}>
               {data.order.map((item) => {
@@ -36,11 +35,15 @@ export default defineComponent({
               })}
               <hr {...api.separatorProps} />
               {data.type.map((item) => {
-                const option = { type: "checkbox", name: "type", value: item.id }
+                const option = {
+                  type: "checkbox",
+                  name: "type",
+                  value: item.id,
+                }
                 return (
                   <div key={item.id} {...api.getOptionItemProps(option)}>
                     {api.isOptionChecked(option) ? "✅" : null} {item.label}
-                </div>
+                  </div>
                 )
               })}
             </div>

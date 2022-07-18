@@ -15,7 +15,7 @@ export default defineComponent({
   setup() {
     // Level 1 - File Menu
     const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
-      menu.machine({ "aria-label": "File" }),
+      menu.machine({ id: "1", "aria-label": "File" }),
     )
 
     const fileMenuApi = computed(() =>

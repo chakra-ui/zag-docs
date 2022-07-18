@@ -6,7 +6,7 @@ import { computed, onMounted, Teleport } from "vue";
 
 // Level 1 - File Menu
 const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
-  menu.machine({ "aria-label": "File" })
+  menu.machine({ id:"1", "aria-label": "File" })
 );
 
 const fileMenu = computed(() =>
@@ -15,7 +15,7 @@ const fileMenu = computed(() =>
 
 // Level 2 - Share Menu
 const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
-  menu.machine({ "aria-label": "Share" })
+  menu.machine({ id:"2", "aria-label": "Share" })
 );
 
 const shareMenu = computed(() =>

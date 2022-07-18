@@ -3,7 +3,7 @@ import * as checkbox from "@zag-js/checkbox"
 import { useMachine, normalizeProps } from "@zag-js/react"
 
 function Checkbox() {
-  const [state, send] = useMachine(checkbox.machine({ id: "checkbox" }))
+  const [state, send] = useMachine(checkbox.machine({ id: "1" }))
   
   const api = checkbox.connect(state, send, normalizeProps)
 

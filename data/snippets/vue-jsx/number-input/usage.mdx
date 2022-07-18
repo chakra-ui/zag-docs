@@ -6,8 +6,8 @@ import { computed, defineComponent, h, Fragment } from "vue"
 export default defineComponent({
   name: "NumberInput",
   setup() {
-    const [state, send] = useMachine(numberInput.machine({ id: "numberInput" }))
-    
+    const [state, send] = useMachine(numberInput.machine({ id: "1" }))
+
     const apiRef = computed(() =>
       numberInput.connect(state.value, send, normalizeProps),
     )

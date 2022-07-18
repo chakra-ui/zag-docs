@@ -5,7 +5,7 @@ import { useMachine, normalizeProps } from "@zag-js/react"
 import * as React from "react"
 
 export function Popover() {
-  const [state, send] = useMachine(popover.machine({ id: "popover", portalled: true }))
+  const [state, send] = useMachine(popover.machine({ id: "1", portalled: true }))
 
   const api = popover.connect(state, send, normalizeProps)
 

@@ -10,7 +10,7 @@ const data = [
   { value: "item-3", label: "Item three", content: "Item three content" },
 ];
 
-const [state, send] = useMachine(tabs.machine({ id: "tabs", value: "item-1" }));
+const [state, send] = useMachine(tabs.machine({ id: "1", value: "item-1" }));
 ;
 const api = computed(() => tabs.connect(state.value, send, normalizeProps));
 </script>

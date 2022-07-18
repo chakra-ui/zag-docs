@@ -6,6 +6,7 @@ import { computed } from "vue";
 
 const [state, send] = useMachine(
   tagsInput.machine({
+    id: "1",
     value: ["React", "Vue"],
   })
 );

@@ -6,8 +6,8 @@ import { defineComponent, computed, h, Fragment } from "vue"
 export default defineComponent({
   name: "Slider",
   setup() {
-    const [state, send] = useMachine(slider.machine({ id: "slider" }))
-    
+    const [state, send] = useMachine(slider.machine({ id: "1" }))
+
     const apiRef = computed(() =>
       slider.connect(state.value, send, normalizeProps),
     )

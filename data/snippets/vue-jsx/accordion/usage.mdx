@@ -12,8 +12,8 @@ const data = [
 export default defineComponent({
   name: "Accordion",
   setup() {
-    const [state, send] = useMachine(accordion.machine({ id: "accordion" }))
-    
+    const [state, send] = useMachine(accordion.machine({ id: "1" }))
+
     const apiRef = computed(() =>
       accordion.connect(state.value, send, normalizeProps),
     )

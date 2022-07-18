@@ -7,6 +7,7 @@ export const SearchTrigger = forwardRef(
     return (
       <chakra.button
         {...props}
+        ref={ref}
         type="button"
         width="full"
         display="flex"

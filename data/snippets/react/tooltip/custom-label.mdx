@@ -5,6 +5,7 @@ import * as tooltip from "@zag-js/tooltip"
 export function Tooltip() {
   const [state, send] = useMachine(
     tooltip.machine({
+      id: "1",
       "aria-label": "Tooltip Custom Label",
     }),
   )
@@ -13,9 +14,7 @@ export function Tooltip() {
 
   return (
     <>
-      <button {...api.triggerProps}>
-        Hover me
-      </button>
+      <button {...api.triggerProps}>Hover me</button>
       {api.isOpen && (
         <div {...api.positionerProps}>
           <div {...api.contentProps}>

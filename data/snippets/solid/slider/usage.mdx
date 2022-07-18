@@ -4,7 +4,7 @@ import { normalizeProps, useMachine } from "@zag-js/solid"
 import { createMemo, createUniqueId } from "solid-js"
 
 export function Slider() {
-  const [state, send] = useMachine(slider.machine({ id: "slider" }))
+  const [state, send] = useMachine(slider.machine({ id: createUniqueId() }))
 
   const api = createMemo(() => slider.connect(state, send, normalizeProps))
 

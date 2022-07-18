@@ -4,7 +4,7 @@ import * as dialog from "@zag-js/dialog";
 import { normalizeProps, useMachine } from "@zag-js/vue";
 import { computed, Teleport } from "vue";
 
-const [state, send] = useMachine(dialog.machine({ id: "dialog" }));
+const [state, send] = useMachine(dialog.machine({ id: "1" }));
 ;
 const api = computed(() => dialog.connect(state.value, send, normalizeProps));
 </script>

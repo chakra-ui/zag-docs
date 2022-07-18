@@ -8,10 +8,11 @@ export default defineComponent({
   setup() {
     const [state, send] = useMachine(
       menu.machine({
+        id: "1",
         "aria-label": "File",
       }),
     )
-  
+
     const apiRef = computed(() =>
       menu.connect(state.value, send, normalizeProps),
     )

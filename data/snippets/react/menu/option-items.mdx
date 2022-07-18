@@ -18,6 +18,7 @@ const data = {
 export function Menu() {
   const [state, send] = useMachine(
     menu.machine({
+      id: "1",
       "aria-label": "Sort by",
       values: { order: "", type: [] },
     }),
@@ -27,9 +28,7 @@ export function Menu() {
 
   return (
     <>
-      <button {...api.triggerProps}>
-        Trigger
-      </button>
+      <button {...api.triggerProps}>Trigger</button>
       <div {...api.positionerProps}>
         <div {...api.contentProps}>
           {data.order.map((item) => {

@@ -4,7 +4,7 @@ import { Portal } from "@reach/portal"
 import { useMachine, normalizeProps } from "@zag-js/react"
 
 export function Dialog() {
-  const [state, send] = useMachine(dialog.machine({ id: "dialog" }))
+  const [state, send] = useMachine(dialog.machine({ id: "1" }))
   
   const api = dialog.connect(state, send, normalizeProps)
 

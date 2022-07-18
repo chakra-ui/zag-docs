@@ -6,6 +6,7 @@ import { computed } from "vue";
 
 const [state, send] = useMachine(
   rangeSlider.machine({
+    id: "1",
     name: ["min", "max"],
     value: [10, 60],
   })

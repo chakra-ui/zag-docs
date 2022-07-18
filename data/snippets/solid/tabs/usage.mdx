@@ -10,7 +10,7 @@ const data = [
 ]
 
 export function Tabs() {
-  const [state, send] = useMachine(tabs.machine({ id: "tabs", value: "item-1" }))
+  const [state, send] = useMachine(tabs.machine({ id: createUniqueId(), value: "item-1" }))
 
   const api = createMemo(() => tabs.connect(state, send, normalizeProps))
 

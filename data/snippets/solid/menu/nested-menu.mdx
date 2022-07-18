@@ -43,8 +43,8 @@ export default function Page() {
             <li {...fileMenu().getItemProps({ id: "new-tab" })}>New tab</li>
             <li {...fileMenu().getItemProps({ id: "new-win" })}>New window</li>
             <li {...shareMenuTriggerProps()}>Share</li>
-            <li {...fileMenu().getItemProps({ id: "print" })}>Print...</li>
-            <li {...fileMenu().getItemProps({ id: "help" })}>Help</li>
+            <li {...fileMenu().getItemProps({ id: createUniqueId() })}>Print...</li>
+            <li {...fileMenu().getItemProps({ id: createUniqueId() })}>Help</li>
           </ul>
         </div>
       </Portal>
@@ -52,9 +52,9 @@ export default function Page() {
       <Portal>
         <div {...shareMenu().positionerProps}>
           <ul {...shareMenu().contentProps}>
-            <li {...shareMenu().getItemProps({ id: "messages" })}>Messages</li>
-            <li {...shareMenu().getItemProps({ id: "airdrop" })}>Airdrop</li>
-            <li {...shareMenu().getItemProps({ id: "whatsapp" })}>WhatsApp</li>
+            <li {...shareMenu().getItemProps({ id: createUniqueId() })}>Messages</li>
+            <li {...shareMenu().getItemProps({ id: createUniqueId() })}>Airdrop</li>
+            <li {...shareMenu().getItemProps({ id: createUniqueId() })}>WhatsApp</li>
           </ul>
         </div>
       </Portal>

@@ -6,8 +6,8 @@ import { computed, defineComponent, h, Fragment } from "vue"
 export default defineComponent({
   name: "PinInput",
   setup() {
-    const [state, send] = useMachine(pinInput.machine({ id: "pinInput" }))
-    
+    const [state, send] = useMachine(pinInput.machine({ id: "1" }))
+
     const apiRef = computed(() =>
       pinInput.connect(state.value, send, normalizeProps),
     )

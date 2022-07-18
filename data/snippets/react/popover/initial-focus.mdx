@@ -5,6 +5,7 @@ export function Popover() {
 
   const [state, send] = useMachine(
     popover.machine({
+      id: "1",
       initialFocusEl: () => inputRef.current,
     }),
   )
@@ -13,7 +14,7 @@ export function Popover() {
 
   return (
     //...
-    <input />
+    <input ref={inputRef} />
     // ...
   )
 }

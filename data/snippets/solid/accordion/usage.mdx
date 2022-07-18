@@ -10,7 +10,7 @@ const data = [
 ]
 
 function Accordion() {
-  const [state, send] = useMachine(accordion.machine({ id: "accordion" }))
+  const [state, send] = useMachine(accordion.machine({ id: createUniqueId() }))
 
   const api = createMemo(() => accordion.connect(state, send, normalizeProps))
 
