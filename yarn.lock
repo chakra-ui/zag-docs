@@ -1208,10 +1208,10 @@
     "@zag-js/slider" "0.1.11"
     "@zag-js/types" "0.2.3"
 
-"@zag-js/rating@0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@zag-js/rating/-/rating-0.1.11.tgz#a10552c4d5c8f7e25113e37913fa515e14857041"
-  integrity sha512-3khDsoJz7cTG52LZNjpQfH09k2v2yrEQcOaa0QFBMzGUAbJ1CyugeFulQ+KooekH0nbNnccLeD5FNmtJqsCxzg==
+"@zag-js/rating@0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@zag-js/rating/-/rating-0.1.12.tgz#677295a35dd3a6c2ff4ff200af4c42d834df1c30"
+  integrity sha512-EpohwNLAlsO0MssipBBQ4/1xlAlSv7bLVIxTkSR1yJ0XX+YXc3Qv9iKxJTDikUMrwjNpoEBQlfZPgpz9Ch+l4A==
   dependencies:
     "@zag-js/core" "0.1.9"
     "@zag-js/types" "0.2.3"
