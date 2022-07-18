@@ -133,7 +133,7 @@ const components: Record<string, FC<Record<string, any>>> = {
 
     const [state, send] = useMachine(
       tabs.machine({
-        id: "snippet-tabs",
+        id: props.id,
         value: userFramework ?? "react",
       }),
     )
