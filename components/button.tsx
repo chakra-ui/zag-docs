@@ -14,5 +14,5 @@ type ButtonProps = HTMLChakraProps<"button"> &
 export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   const { size, variant, ...ownProps } = props
   const styles = useStyleConfig("Button", { variant, size })
-  return <chakra.button __css={styles} {...ownProps}></chakra.button>
+  return <chakra.button ref={ref} __css={styles} {...ownProps}></chakra.button>
 })
