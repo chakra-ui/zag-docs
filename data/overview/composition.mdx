@@ -56,8 +56,8 @@ provides `useId()` hook and Solid.js provides a `createId()` function for this
 purpose.
 
 ```js
-/// ...                                👇 must be unique
-const ref = useMachine(toggle.machine{ id: useId() })
+/// ...                                          👇 must be unique
+const [state, send] = useMachine(toggle.machine{ id: useId() })
 /// ...
 ```
 
