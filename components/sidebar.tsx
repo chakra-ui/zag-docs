@@ -13,9 +13,17 @@ type DocLinkProps = {
   children: React.ReactNode
 }
 
+const sanitize = (href: string) =>
+  href.replace(/#.*/, "").split("/").filter(Boolean)
+
 function test(href: string, asPath: string) {
-  const a = href.split("/")
-  const b = asPath.split("/")
+  const a = sanitize(href)
+  const b = sanitize(asPath)
+
+  if (asPath.startsWith("/changelogs")) {
+    return a[0] === b[0]
+  }
+
   return a[a.length - 1] === b[b.length - 1]
 }
 
@@ -57,12 +65,16 @@ export function Sidebar() {
                     {item.label}
                   </chakra.h5>
                 </HStack>
+
                 <Flex as="ul" listStyleType="none" direction="column">
-                  {item.items.map((subItem) => {
+                  {item.items.map((subItem, index) => {
                     const href = formatUrl(item.id, subItem.id, framework)
                     if (subItem.type === "doc") {
                       return (
-                        <DocLink key={subItem.id} href={href}>
+                        <DocLink
+                          key={subItem.id + index}
+                          href={subItem.href ?? href}
+                        >
                           {subItem.label}
                         </DocLink>
                       )

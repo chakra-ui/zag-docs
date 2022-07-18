@@ -8,17 +8,22 @@ import { Sidebar } from "components/sidebar"
 import { SkipNavLink } from "components/skip-nav"
 import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
-import { DocumentTypes } from "contentlayer/generated"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 
 type DocsLayoutProps = {
   children: React.ReactNode
-  doc: DocumentTypes
+  doc: any
+  toc?: {
+    title?: string
+    data?: any[]
+    getSlug?: (slug: string) => string
+  }
 }
 
-export default function DocsLayout({ children, doc }: DocsLayoutProps) {
-  const hideToc = doc.frontmatter.toc.length < 2
+export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
+  const tableOfContent = toc?.data ?? doc.frontmatter.toc
+  const hideToc = tableOfContent.length < 2
 
   return (
     <Box>
@@ -87,7 +92,11 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             width="19.5rem"
             visibility={hideToc ? "hidden" : undefined}
           >
-            <TableOfContents data={doc.frontmatter.toc} />
+            <TableOfContents
+              title={toc?.title}
+              data={tableOfContent}
+              getSlug={toc?.getSlug}
+            />
           </Box>
         </Box>
       </chakra.div>

@@ -25,6 +25,7 @@
     "@chakra-ui/theme": "^1.14.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@octokit/rest": "19.0.3",
     "@reach/portal": "^0.17.0",
     "@zag-js/accordion": "0.1.9",
     "@zag-js/checkbox": "^0.1.1",
