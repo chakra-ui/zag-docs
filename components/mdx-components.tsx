@@ -16,6 +16,7 @@ import { RiNpmjsFill } from "react-icons/ri"
 import { CopyButton } from "./copy-button"
 import { useFramework } from "./framework"
 import { Showcase } from "./showcase"
+import NextImage from "next/image"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -210,6 +211,14 @@ const components: Record<string, FC<Record<string, any>>> = {
 
     return (
       <chakra.a textStyle="link" target="_blank" rel="noopener" {...props} />
+    )
+  },
+  Anatomy: ({ id }: { id: string }) => {
+    const src = `/illustrations/${id}.svg`
+    return (
+      <Box my="8" bg="linear-gradient(90deg, #41B883 -2.23%, #299464 92.64%)">
+        <NextImage src={src} alt="" width="1456px" height="812px" />
+      </Box>
     )
   },
 }
