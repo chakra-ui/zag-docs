@@ -15,7 +15,7 @@ import { Sidebar } from "./sidebar"
 export function MobileNavigation() {
   const [state, send] = useMachine(
     dialog.machine({
-      id: "mobile-nav",
+      id: "m1",
       initialFocusEl: () => initialRef.current,
     }),
   )
