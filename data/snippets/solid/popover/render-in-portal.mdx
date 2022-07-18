@@ -6,7 +6,7 @@ import { Portal } from "solid-js/web"
 
 export function Popover() {
   const [state, send] = useMachine(
-    popover.machine.withContent({ portalled: true }),
+    popover.machine({ portalled: true, id: createUniqueId() }),
   )
 
   const api = createMemo(() => popover.connect(state, send, normalizeProps))

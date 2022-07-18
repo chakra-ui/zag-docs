@@ -6,6 +6,7 @@ import { createMemo, createUniqueId, For } from "solid-js"
 export function TagsInput() {
   const [state, send] = useMachine(
     tagsInput.machine({
+      id: createUniqueId(),
       value: ["React", "Vue"],
     }),
   )

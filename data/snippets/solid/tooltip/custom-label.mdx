@@ -1,10 +1,12 @@
-```jsx {7,20-25}
+```jsx {9,22-27}
 import { useMachine } from "@zag-js/solid"
 import * as tooltip from "@zag-js/tooltip"
+import { createUniqueId } from "solid-js"
 
 export function Tooltip() {
   const [state, send] = useMachine(
     tooltip.machine({
+      id: createUniqueId(),
       "aria-label": "Tooltip Custom Label",
     }),
   )
@@ -13,9 +15,7 @@ export function Tooltip() {
 
   return (
     <>
-      <button {...api().triggerProps}>
-        Hover me
-      </button>
+      <button {...api().triggerProps}>Hover me</button>
       {api().isOpen && (
         <div {...api().positionerProps}>
           <div {...api().contentProps}>
