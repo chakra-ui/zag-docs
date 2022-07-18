@@ -9,12 +9,9 @@ const data = [
 ]
 
 export function Tabs(props: any) {
-  const [state, send] = useMachine(
-    tabs.machine({ id: "tabs", value: "item-1" }),
-    {
-      context: props.controls,
-    },
-  )
+  const [state, send] = useMachine(tabs.machine({ id: "1", value: "item-1" }), {
+    context: props.controls,
+  })
 
   const api = tabs.connect(state, send, normalizeProps)
 

@@ -8,7 +8,9 @@ import { Button } from "components/button"
 import { HiX } from "react-icons/hi"
 
 export function Dialog(props: { controls: any }) {
-  const [state, send] = useMachine(dialog.machine({ id: "dialog" }), { context: props.controls })
+  const [state, send] = useMachine(dialog.machine({ id: "1" }), {
+    context: props.controls,
+  })
 
   const api = dialog.connect(state, send, normalizeProps)
 

@@ -29,12 +29,11 @@ type AccordionProps = {
 }
 
 export function Accordion(props: AccordionProps) {
-  const [state, send] = useMachine(accordion.machine({ id: "accordion" }), {
+  const [state, send] = useMachine(accordion.machine({ id: "1" }), {
     context: props.controls,
   })
 
   const api = accordion.connect(state, send, normalizeProps)
-
 
   return (
     <Box width="400px" {...api.rootProps}>

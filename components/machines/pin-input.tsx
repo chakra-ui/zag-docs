@@ -4,7 +4,7 @@ import * as pinInput from "@zag-js/pin-input"
 import { normalizeProps, useMachine } from "@zag-js/react"
 
 export function PinInput(props: any) {
-  const [state, send] = useMachine(pinInput.machine({ id: "pinInput" }), {
+  const [state, send] = useMachine(pinInput.machine({ id: "1" }), {
     context: props.controls,
   })
 

@@ -5,10 +5,9 @@ import { HStack } from "@chakra-ui/layout"
 import { Button } from "components/button"
 
 export function Editable(props: any) {
-  const [state, send] = useMachine(editable.machine({ id: "editable" }), {
+  const [state, send] = useMachine(editable.machine({ id: "1" }), {
     context: props.controls,
   })
-
 
   const api = editable.connect(state, send, normalizeProps)
 

@@ -5,7 +5,7 @@ import { Center, Flex } from "@chakra-ui/layout"
 
 export function Slider(props: any) {
   const [state, send] = useMachine(
-    slider.machine({ id: "slider", min: -50, max: 50, value: 20 }),
+    slider.machine({ id: "1", min: -50, max: 50, value: 20 }),
     { context: props.controls },
   )
 

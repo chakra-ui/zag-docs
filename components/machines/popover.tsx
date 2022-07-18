@@ -8,7 +8,7 @@ import { HiX } from "react-icons/hi"
 import { Button } from "components/button"
 
 export function Popover(props: any) {
-  const [state, send] = useMachine(popover.machine({ id: "popover" }), {
+  const [state, send] = useMachine(popover.machine({ id: "1" }), {
     context: props.controls,
   })
 

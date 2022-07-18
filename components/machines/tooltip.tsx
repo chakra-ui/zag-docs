@@ -5,7 +5,9 @@ import { Button } from "components/button"
 import Portal from "@reach/portal"
 
 export function Tooltip(props) {
-  const [state, send] = useMachine(tooltip.machine({ id: "tooltip" }), { context: props.controls })
+  const [state, send] = useMachine(tooltip.machine({ id: "1" }), {
+    context: props.controls,
+  })
 
   const api = tooltip.connect(state, send, normalizeProps)
 

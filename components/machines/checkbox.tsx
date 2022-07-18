@@ -11,10 +11,9 @@ type CheckboxProps = {
 }
 
 export function Checkbox(props: CheckboxProps) {
-  const [state, send] = useMachine(checkbox.machine({ id: "checkbox" }), {
+  const [state, send] = useMachine(checkbox.machine({ id: "1" }), {
     context: props.controls,
   })
-
 
   const api = checkbox.connect(state, send, normalizeProps)
 

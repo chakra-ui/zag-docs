@@ -4,7 +4,7 @@ import { chakra } from "@chakra-ui/system"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 
 export function NumberInput(props: any) {
-  const [state, send] = useMachine(numberInput.machine({ id: "numberInput" }), {
+  const [state, send] = useMachine(numberInput.machine({ id: "1" }), {
     context: props.controls,
   })
 

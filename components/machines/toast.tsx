@@ -68,7 +68,7 @@ function Toast({ actor }: { actor: toast.Service }) {
 export function ToastGroup(props: any) {
   const [state, send] = useMachine(
     toast.group.machine({
-      id: "toast.group",
+      id: "1",
       offsets: "24px",
     }),
     { context: props.controls },

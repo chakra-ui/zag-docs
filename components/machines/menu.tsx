@@ -12,7 +12,9 @@ const data = [
 ]
 
 export function Menu(props) {
-  const [state, send] = useMachine(menu.machine({ id: "menu" }), { context: props.controls })
+  const [state, send] = useMachine(menu.machine({ id: "1" }), {
+    context: props.controls,
+  })
 
   const api = menu.connect(state, send, normalizeProps)
 

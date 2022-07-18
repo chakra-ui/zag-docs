@@ -6,7 +6,7 @@ import { Center, Flex } from "@chakra-ui/layout"
 export function RangeSlider(props: any) {
   const [state, send] = useMachine(
     slider.machine({
-      id: "range-slider",
+      id: "1",
       name: "quantity",
       value: [10, 60],
     }),
