@@ -35,7 +35,7 @@ type ResourceLinkProps = {
   children: any
 }
 
-function ResourceLink({ href, icon, children }: ResourceLinkProps) {
+export function ResourceLink({ href, icon, children }: ResourceLinkProps) {
   return (
     <HStack
       as="a"

@@ -14,6 +14,8 @@ import remarkDirective from "remark-directive"
 import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
+import { toKebabCase } from "./lib/to-kebab-case"
+
 import fs from "fs"
 
 const fields: FieldDefs = {
@@ -128,9 +130,45 @@ const Snippet = defineDocumentType(() => ({
   },
 }))
 
+const Changelog = defineDocumentType(() => {
+  const getSlug = (doc: LocalDocument) => toKebabCase(doc.releaseDate)
+  return {
+    name: "Changelog",
+    filePathPattern: "changelogs/**/*.mdx",
+    contentType: "mdx",
+    fields: {
+      releaseUrl: { type: "string" },
+      releaseDate: { type: "string" },
+    },
+    computedFields: {
+      editUrl: {
+        type: "string",
+        resolve: (doc) => `${siteConfig.repo.editUrl}/${doc._id}`,
+      },
+      params: {
+        type: "list",
+        resolve: (doc) => ["changelogs", getSlug(doc)],
+      },
+      frontmatter: {
+        type: "json",
+        resolve: (doc) => ({
+          title: "Changelog",
+          description: `The changes made as at ${doc.releaseDate}`,
+          slug: `/changelogs/${getSlug(doc)}`,
+          toc: [],
+        }),
+      },
+      slug: {
+        type: "string",
+        resolve: (doc) => `/changelogs/${getSlug(doc)}`,
+      },
+    },
+  }
+})
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
-  documentTypes: [Overview, Guide, Snippet, Component],
+  documentTypes: [Overview, Guide, Snippet, Component, Changelog],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
     rehypePlugins: [

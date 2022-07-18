@@ -17,6 +17,7 @@ type SidebarItem =
       id: string
       label: string
       new?: boolean
+      href?: string
     }
   | {
       type: "link"
@@ -37,7 +38,6 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Installation", id: "installation" },
         { type: "doc", label: "State machine", id: "whats-a-machine" },
         { type: "doc", label: "Styling", id: "styling" },
-        { type: "doc", label: "TypeScript", id: "typescript-usage" },
         { type: "doc", label: "Composition", id: "composition" },
         {
           type: "doc",
@@ -45,6 +45,12 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           id: "programmatic-control",
         },
         { type: "doc", label: "FAQ", id: "faq" },
+        {
+          type: "doc",
+          label: "Changelog",
+          id: "changelogs",
+          href: "/changelogs/latest",
+        },
       ],
     },
     {
