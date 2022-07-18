@@ -6,6 +6,7 @@ import { createMemo, createUniqueId } from "solid-js"
 export function ContextMenu() {
   const [state, send] = useMachine(
     menu.machine({
+      id: "1",
       "aria-label": "File",
     }),
   )
