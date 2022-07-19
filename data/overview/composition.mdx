@@ -96,38 +96,44 @@ return </>
 In the example above, you will notice that the popover and tooltip trigger share
 the same id. That's how to compose machines together.
 
-## Document composition
+## Custom window environment
 
-As mentioned in the [Id composition](#id-composition) section, we track elements
-with `document.getElementById`. In custom windows like html's `iframe`, Electron
-or Tauri, the native browser document would not be available. In this case, you
-have resolve the document and pass it to the machine's context with the
-`getRootNode` method
+Internally, we use DOM query methods like `document.querySelectorAll` and
+`document.getElementById` to locate elements within the machine.
+
+In custom environments like iframe, Shadow DOM, Electron, etc., the machine
+might not work as expected because `document` may not be available.
+
+To provide the correct reference to root node or document, you can pass
+`getRootNode` function it to the machine's context.
+
+> In shadow DOM, the root node can be derived from calling
+> `element.getRootNode()` method on any element.
 
 ```jsx {12,15,42}
-import * as accordion from "@zag-js/accordion";
-import { useMachine, normalizeProps } from "@zag-js/react";
-import Frame, { useFrame } from "react-frame-component";
+import * as accordion from "@zag-js/accordion"
+import { useMachine, normalizeProps } from "@zag-js/react"
+import Frame, { useFrame } from "react-frame-component"
 
 const data = [
   { title: "Watercraft", content: "Sample accordion content" },
   { title: "Automobiles", content: "Sample accordion content" },
-  { title: "Aircrafts", content: "Sample accordion content" }
-];
+  { title: "Aircrafts", content: "Sample accordion content" },
+]
 
-function Accordion({ id }: any) {
-  const { document } = useFrame();
+function Accordion({ id }) {
+  const { document } = useFrame()
 
   const [state, send] = useMachine(
-    accordion.machine({ id, getRootNode: () => document! })
-  );
+    accordion.machine({ id, getRootNode: () => document }),
+  )
 
-  const api = accordion.connect(state, send, normalizeProps);
+  const api = accordion.connect(state, send, normalizeProps)
 
   return (
     <div {...api.rootProps}>
-      {data.map((item, i) => (
-        <div key={i} {...api.getItemProps({ value: item.title })}>
+      {data.map((item, index) => (
+        <div key={index} {...api.getItemProps({ value: item.title })}>
           <h3>
             <button {...api.getTriggerProps({ value: item.title })}>
               {item.title}
@@ -139,7 +145,7 @@ function Accordion({ id }: any) {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 export default function App() {
@@ -150,6 +156,6 @@ export default function App() {
         <Accordion id="2" />
       </Frame>
     </div>
-  );
+  )
 }
 ```
