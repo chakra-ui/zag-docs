@@ -9,12 +9,12 @@
     "start": "next start",
     "lint": "next lint",
     "theme": "chakra-cli tokens theme/index.ts",
-    "watch:theme": "npx nodemon --watch theme/index.ts --exec yarn theme",
+    "watch:theme": "npx nodemon --watch theme/index.ts --exec pnpm theme",
     "gen:snippet": "plop snippet",
     "gen:component": "plop component",
     "contributors:add": "all-contributors add",
     "contributors:gen": "all-contributors generate",
-    "deps": "yarn upgrade --scope @zag-js --latest"
+    "deps": "pnpm upgrade --scope @zag-js --latest"
   },
   "dependencies": {
     "@chakra-ui/cli": "^1.9.0",
@@ -46,6 +46,7 @@
     "@zag-js/toggle": "0.1.11",
     "@zag-js/tooltip": "0.1.11",
     "contentlayer": "^0.2.3",
+    "hastscript": "7.0.2",
     "markdown-toc": "^1.2.0",
     "match-sorter": "^6.3.1",
     "next": "^12.1.5",
@@ -55,6 +56,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
+    "unist-util-visit": "4.1.0",
     "use-match-media-hook": "^1.0.1"
   },
   "resolutions": {
