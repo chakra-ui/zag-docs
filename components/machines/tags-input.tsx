@@ -1,11 +1,12 @@
 import * as tagsInput from "@zag-js/tags-input"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
+import { useId } from "react"
 
 export function TagsInput(props: any) {
   const [state, send] = useMachine(
     tagsInput.machine({
-      id: "1",
+      id: useId(),
       value: ["React", "Vue"],
     }),
     { context: props.controls },

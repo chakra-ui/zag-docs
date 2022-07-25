@@ -2,9 +2,10 @@ import * as numberInput from "@zag-js/number-input"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
+import { useId } from "react"
 
 export function NumberInput(props: any) {
-  const [state, send] = useMachine(numberInput.machine({ id: "1" }), {
+  const [state, send] = useMachine(numberInput.machine({ id: useId() }), {
     context: props.controls,
   })
 

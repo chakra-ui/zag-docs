@@ -3,9 +3,10 @@ import * as tooltip from "@zag-js/tooltip"
 import { chakra } from "@chakra-ui/system"
 import { Button } from "components/button"
 import Portal from "@reach/portal"
+import { useId } from "react"
 
 export function Tooltip(props) {
-  const [state, send] = useMachine(tooltip.machine({ id: "1" }), {
+  const [state, send] = useMachine(tooltip.machine({ id: useId() }), {
     context: props.controls,
   })
 

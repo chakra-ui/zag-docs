@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { chakra } from "@chakra-ui/system"
 import { HiX } from "react-icons/hi"
 import { Button } from "components/button"
+import { useId } from "react"
 
 function Toast({ actor }: { actor: toast.Service }) {
   const [state, send] = useActor(actor)
@@ -68,7 +69,7 @@ function Toast({ actor }: { actor: toast.Service }) {
 export function ToastGroup(props: any) {
   const [state, send] = useMachine(
     toast.group.machine({
-      id: "1",
+      id: useId(),
       offsets: "24px",
     }),
     { context: props.controls },

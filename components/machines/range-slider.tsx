@@ -2,11 +2,12 @@ import * as slider from "@zag-js/range-slider"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { Center, Flex } from "@chakra-ui/layout"
+import { useId } from "react"
 
 export function RangeSlider(props: any) {
   const [state, send] = useMachine(
     slider.machine({
-      id: "1",
+      id: useId(),
       name: "quantity",
       value: [10, 60],
     }),

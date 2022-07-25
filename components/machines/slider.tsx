@@ -2,10 +2,11 @@ import * as slider from "@zag-js/slider"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { Center, Flex } from "@chakra-ui/layout"
+import { useId } from "react"
 
 export function Slider(props: any) {
   const [state, send] = useMachine(
-    slider.machine({ id: "1", min: -50, max: 50, value: 20 }),
+    slider.machine({ id: useId(), min: -50, max: 50, value: 20 }),
     { context: props.controls },
   )
 

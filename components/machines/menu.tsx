@@ -3,6 +3,7 @@ import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import Portal from "@reach/portal"
 import { Button } from "components/button"
+import { useId } from "react"
 
 const data = [
   { label: "Edit", value: "edit" },
@@ -12,7 +13,7 @@ const data = [
 ]
 
 export function Menu(props) {
-  const [state, send] = useMachine(menu.machine({ id: "1" }), {
+  const [state, send] = useMachine(menu.machine({ id: useId() }), {
     context: props.controls,
   })
 

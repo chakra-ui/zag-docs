@@ -6,9 +6,10 @@ import * as dialog from "@zag-js/dialog"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import { Button } from "components/button"
 import { HiX } from "react-icons/hi"
+import { useId } from "react"
 
 export function Dialog(props: { controls: any }) {
-  const [state, send] = useMachine(dialog.machine({ id: "1" }), {
+  const [state, send] = useMachine(dialog.machine({ id: useId() }), {
     context: props.controls,
   })
 

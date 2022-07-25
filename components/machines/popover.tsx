@@ -6,9 +6,10 @@ import { chakra } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
 import { HiX } from "react-icons/hi"
 import { Button } from "components/button"
+import { useId } from "react"
 
 export function Popover(props: any) {
-  const [state, send] = useMachine(popover.machine({ id: "1" }), {
+  const [state, send] = useMachine(popover.machine({ id: useId() }), {
     context: props.controls,
   })
 

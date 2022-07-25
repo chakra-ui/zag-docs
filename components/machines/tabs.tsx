@@ -1,6 +1,7 @@
 import { normalizeProps, useMachine } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { chakra } from "@chakra-ui/system"
+import { useId } from "react"
 
 const data = [
   { value: "item-1", label: "Item one", content: "Item one content" },
@@ -9,7 +10,7 @@ const data = [
 ]
 
 export function Tabs(props: any) {
-  const [state, send] = useMachine(tabs.machine({ id: "1", value: "item-1" }), {
+  const [state, send] = useMachine(tabs.machine({ id: useId() }), {
     context: props.controls,
   })
 

@@ -1,6 +1,7 @@
 import { chakra } from "@chakra-ui/system"
 import * as checkbox from "@zag-js/checkbox"
 import { normalizeProps, useMachine } from "@zag-js/react"
+import { useId } from "react"
 
 type CheckboxProps = {
   controls: {
@@ -11,7 +12,7 @@ type CheckboxProps = {
 }
 
 export function Checkbox(props: CheckboxProps) {
-  const [state, send] = useMachine(checkbox.machine({ id: "1" }), {
+  const [state, send] = useMachine(checkbox.machine({ id: useId() }), {
     context: props.controls,
   })
 

@@ -3,9 +3,10 @@ import { normalizeProps, useMachine } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { HStack } from "@chakra-ui/layout"
 import { Button } from "components/button"
+import { useId } from "react"
 
 export function Editable(props: any) {
-  const [state, send] = useMachine(editable.machine({ id: "1" }), {
+  const [state, send] = useMachine(editable.machine({ id: useId() }), {
     context: props.controls,
   })
 
