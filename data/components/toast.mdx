@@ -250,6 +250,7 @@ return (
   <pre {...api.rootProps}>
     <div {...api.progressbarProps} />
     <p {...api.titleProps}>{api.title}</p>
+    <p {...api.descriptionProps}>{api.description}</p>
     <button onClick={api.dismiss}>Close</button>
   </pre>
 )
@@ -383,6 +384,7 @@ function ToastItem(props) {
   return (
     <div {...api.rootProps}>
       <p {...api.titleProps}>{api.title}</p>
+      <p {...api.descriptionProps}>{api.description}</p>
       <p>{api.type === "loading" ? <BeatLoader /> : null}</p>
       <button onClick={api.dismiss}>Close</button>
     </div>
@@ -401,6 +403,7 @@ toast.create({
         style={{ background: props.type === "loading" ? "pink" : "red" }}
       >
         <p>{props.title}</p>
+        <p>{props.description}</p>
         <button onClick={props.dismiss}>Close</button>
       </div>
     )
