@@ -11,7 +11,7 @@ function Toast(props) {
   return (
     <div {...api.rootProps}>
       <h3 {...api.titleProps}>{api.title}</h3>
-      <p>{api.description}</p>
+      <p {...api.descriptionProps}>{api.description}</p>
       <button onClick={api.dismiss}>Close</button>
     </div>
   )
